@@ -1,0 +1,57 @@
+#
+#   GeoNetwork + PostgeSQL Install
+#   ------------------------------
+#
+---
+
+- hosts: geonetwork
+  vars:
+    # TODO: config/prompt
+    geonetwork_db_password: pass
+  tasks:
+    - name: Make sure packages are installed
+      apt: pkg={{ item }} state=present update_cache=yes
+      with_items:
+        - tomcat7
+        - postgresql-9.1
+        - postgresql-9.1-postgis
+        - python-psycopg2 
+
+    - name: Copy executables
+      copy: src={{ item }} dest=/{{ item }} mode=744
+      with_items:
+        - tmp/update_geonetwork_config_xml.py
+        - tmp/setup_geonetwork_database.sh
+
+    - name: Create Java prefs dir and set permissions to Tomcat user
+      file: path=/usr/share/tomcat7/.java owner=tomcat7 group=tomcat7 state=directory
+
+    - name: Increase Java heap size
+      lineinfile: dest=/etc/default/tomcat7
+                         backup=yes
+                         state=present
+                         regexp='JAVA_OPTS="-Djava.awt.headless=true -Xmx128m -XX:\+UseConcMarkSweepGC"'
+                         line='JAVA_OPTS="-Djava.awt.headless=true -Xmx1024m -XX:+UseConcMarkSweepGC"'
+
+    - name: Download GeoNetwork WAR into webapps folder
+      get_url: dest=/var/lib/tomcat7/webapps/geonetwork.war url=http://downloads.sourceforge.net/project/geonetwork/GeoNetwork_opensource/v2.10.3/geonetwork.war
+
+    - name: Make sure the web app is deployed
+      wait_for: path=/var/lib/tomcat7/webapps/geonetwork/WEB-INF/config.xml
+
+    - name: Update GeoNetwork config.xml file to set up Postgres DB backend
+      command: /tmp/update_geonetwork_config_xml.py {{ geonetwork_db_password }}
+
+    - name: Create GeoNetwork Postgres user
+      sudo_user: postgres
+      postgresql_user: user=geonetwork password={{ geonetwork_db_password }}
+
+    - name: Create GeoNetwork Postgres DB
+      sudo_user: postgres
+      postgresql_db: name=geonetwork owner=geonetwork
+
+    - name: Setup GeoNetwork Postgres DB (PostGIS + GeoNetwork SQL scripts)
+      command: /tmp/setup_geonetwork_database.sh   
+
+    - name: Restart Tomcat
+      service: name=tomcat7 state=restarted
