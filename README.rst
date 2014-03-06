@@ -13,7 +13,8 @@ Install
 
 GeoNetwork is installed with the Ansible script located at
 ``deployment/geonetwork``. This will install GeoNetwork 2.10.3 using
-PostgreSQL 9.1 as database backend.
+PostgreSQL 9.1 and PostGIS 1.5 as database backend. It has been tested on
+Ubuntu 12.04 64bit.
 
 After the installation is completed, GeoNetwork should be accessible at
 

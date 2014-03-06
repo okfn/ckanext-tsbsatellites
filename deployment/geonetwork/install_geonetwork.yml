@@ -1,6 +1,6 @@
 #
-#   GeoNetwork + PostgeSQL Install
-#   ------------------------------
+#   GeoNetwork + PostgeSQL/PostGIS Install
+#   --------------------------------------
 #
 ---
 
@@ -8,6 +8,11 @@
   vars:
     # TODO: config/prompt
     geonetwork_db_password: pass
+    tmp_files:
+        - tmp/update_geonetwork_config_xml.py
+        - tmp/setup_geonetwork_database.sh
+        - tmp/tomcat_context_resource.xml
+
   tasks:
     - name: Make sure packages are installed
       apt: pkg={{ item }} state=present update_cache=yes
@@ -18,10 +23,8 @@
         - python-psycopg2 
 
     - name: Copy executables
-      copy: src={{ item }} dest=/{{ item }} mode=744
-      with_items:
-        - tmp/update_geonetwork_config_xml.py
-        - tmp/setup_geonetwork_database.sh
+      template: src={{ item }} dest=/{{ item }} mode=700
+      with_items: tmp_files
 
     - name: Create Java prefs dir and set permissions to Tomcat user
       file: path=/usr/share/tomcat7/.java owner=tomcat7 group=tomcat7 state=directory
@@ -40,7 +43,18 @@
       wait_for: path=/var/lib/tomcat7/webapps/geonetwork/WEB-INF/config.xml
 
     - name: Update GeoNetwork config.xml file to set up Postgres DB backend
-      command: /tmp/update_geonetwork_config_xml.py {{ geonetwork_db_password }}
+      command: /tmp/update_geonetwork_config_xml.py
+
+    - name: Update Tomcat context file (I)
+      command: cat /tmp/tomcat_context_resource.xml
+      register: resource
+
+    - name: Update Tomcat context file (II)
+      lineinfile: dest=/var/lib/tomcat7/conf/context.xml
+                  backup=yes
+                  state=present
+                  insertbefore='</Context>'
+                  line='{{ resource.stdout }}'
 
     - name: Create GeoNetwork Postgres user
       sudo_user: postgres
@@ -55,3 +69,7 @@
 
     - name: Restart Tomcat
       service: name=tomcat7 state=restarted
+
+    - name: Clean up a bit
+      file: path=/{{ item }} state=absent
+      with_items: tmp_files
