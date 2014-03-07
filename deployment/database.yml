@@ -1,0 +1,25 @@
+---
+- hosts: webserver
+  vars:
+    ckan_user: ckan_default
+    ckan_db: ckan_default
+  tasks:
+  - name: install ckan deps
+    apt: pkg={{ item }} state=installed update_cache=yes
+    with_items:
+      - postgresql
+      - solr-jetty
+      - git-core
+      - openjdk-6-jdk
+
+  - name: setup postgresql user
+    postgresql_user: name={{ ckan_user }}
+
+  - name: setup postgresl database
+    postgresql_db: db={{ ckan_db }} owner={{ ckan_user }} encoding='UTF-8'
+
+  #TODO
+  #- name: setup postgis
+
+  #TODO
+  #- name: setup postgis for database
