@@ -6,8 +6,10 @@ from ckanext.spatial.interfaces import ISpatialHarvester
 class TSBSatellitesPlugin(p.SingletonPlugin):
 
     p.implements(ISpatialHarvester)
+    p.implements(p.IFacets)
 
     # ISpatialHarvester
+
     def get_package_dict(self, context, data_dict):
 
         package_dict = data_dict['package_dict']
@@ -47,3 +49,20 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
             )
 
         return package_dict
+
+    # IFacets
+
+    def dataset_facets(self, facets_dict, package_type):
+        # We will actually remove all the core facets and add our own
+        facets_dict.clear()
+
+        facets_dict['topic-category'] = p.toolkit._('Topic Category')
+        facets_dict['data-format'] = p.toolkit._('Data Format')
+        facets_dict['use-constraints'] = p.toolkit._('Data Cost and Access')
+
+        #TODO: handle these as number / date
+        facets_dict['spatial-resolution'] = p.toolkit._('Spatial Resolution')
+
+        facets_dict['begin-collection_date'] = p.toolkit._('Date of Collection')
+
+        return facets_dict
