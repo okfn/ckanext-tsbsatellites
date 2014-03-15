@@ -5,7 +5,11 @@ ckanext-tsbsatellites
 Installation and setup
 ======================
 
-* Install CKAN 2.2 via package install
+* Install CKAN 2.2 via package install in the web server
+
+* Install Postgres and Solr 4 in the DB server. There is an Ansible script
+  for installing Solr 4 in ``deployment/solr``, which also sets up the custom
+  schema.
 
 * Install `ckanext-spatial`_, including setting up PostGIS in the database
   as described in the documentation.
@@ -21,6 +25,7 @@ Installation and setup
 
     ckan.harvest.mq.type = redis
 
+    ckanext.spatial.search_backend = solr
     ckanext.spatial.harvest.continue_on_validation_errors=True
 
 * TODO: Set up Solr 4 and enable the Solr backend on the spatial search
