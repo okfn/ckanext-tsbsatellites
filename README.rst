@@ -2,7 +2,31 @@
 ckanext-tsbsatellites
 =====================
 
-TODO
+Installation and setup
+======================
+
+* Install CKAN 2.2 via package install
+
+* Install `ckanext-spatial`_, including setting up PostGIS in the database
+  as described in the documentation.
+
+* Install `ckanext-harvest`_, using the Redis backend (note that you need to
+  ``pip install redis`` in your virtualenv
+
+* Install `ckanext-tsbsatellites`
+
+* Add the following options to the configuration file, apart from the usual ones::
+
+    ckan.plugins = spatial_metadata spatial_query harvest csw_harvester tsbsatellites
+
+    ckan.harvest.mq.type = redis
+
+    ckanext.spatial.harvest.continue_on_validation_errors=True
+
+* TODO: Set up Solr 4 and enable the Solr backend on the spatial search
+
+.. _ckanext-spatial: http://ckanext-spatial.readthedocs.org/en/latest/install.html
+.. _ckanext-harvest: https://github.com/ckan/ckanext-harvest#installation
 
 
 GeoNetwork
