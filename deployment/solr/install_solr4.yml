@@ -1,0 +1,52 @@
+- hosts: dbserver
+  tasks:
+    - name: Make sure packages are installed
+      apt: pkg={{ item }} state=present update_cache=yes
+      with_items:
+        - tomcat7
+        - git
+
+    - name: Download Solr 4
+      get_url: dest=/tmp/solr-4.7.0.tgz url=http://mirrors.linsrv.net/apache/lucene/solr/4.7.0/solr-4.7.0.tgz
+
+    - name: Create Solr dir in /usr/share
+      file: path=/usr/share/solr state=directory
+
+    - name: Extract to /usr/share
+      command: tar -zxf /tmp/solr-4.7.0.tgz -C /usr/share/solr --strip-components 1
+
+    - name: Copy war file
+      command: cp /usr/share/solr/example/webapps/solr.war /usr/share/solr/example/solr/solr.war
+
+    - name: Copy necessary logging libraries (I)
+      shell: cp -R /usr/share/solr/example/lib/ext/*.jar /usr/share/tomcat7/lib/
+
+    - name: Copy necessary logging libraries (II)
+      command: cp /usr/share/solr/example/resources/log4j.properties /usr/share/tomcat7/lib/
+
+    - name: Make log dir
+      file: path=/var/log/solr owner=tomcat7 group=tomcat7 state=directory
+
+    - name: Change log config
+      lineinfile: dest=/usr/share/tomcat7/lib/log4j.properties
+                  backup=yes
+                  state=present
+                  regexp='solr.log=logs/'
+                  line='/var/log/solr/'
+
+    - name: Make data dir
+      file: path=/usr/share/solr/example/solr/collection1/data owner=tomcat7 group=tomcat7 state=directory
+
+    - name: Create Solr Tomcat context file
+      copy: src=tmp/solr.xml dest=/etc/tomcat7/Catalina/localhost/solr.xml
+
+    # TODO: separate this to allow reuse
+    - name: Get Catapult Satellites Catalog CKAN extension 
+      git: repo=https://github.com/okfn/ckanext-tsbsatellites dest=/usr/lib/ckan/default/src/ckanext-tsbsatellites
+
+    - name: Symlink to the CKAN schema
+      file: src=/usr/lib/ckan/default/src/ckanext-tsbsatellites/solr/schema.xml dest=/usr/share/solr/example/solr/collection1/conf/schema.xml state=link force=yes
+
+    - name: Restart Tomcat
+      service: name=tomcat7 state=restarted
+
