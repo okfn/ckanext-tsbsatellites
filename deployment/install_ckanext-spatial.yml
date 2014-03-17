@@ -1,0 +1,51 @@
+# Install ckanext-spatial
+#
+# Note: Requires CKAN to be properly configured
+#
+
+---
+- hosts: webserver
+  vars:
+    virtualenv: default
+  tasks:
+    - name: Make sure packages are installed
+      apt: pkg={{ item }} state=installed update_cache=yes
+      with_items:
+        - python-dev
+        - libxml2-dev
+        - libxslt1-dev
+        - libgeos-c1
+
+    - name: Get spatial extension
+      git: repo=https://github.com/okfn/ckanext-spatial dest=/usr/lib/ckan/{{ virtualenv }}/src/ckanext-spatial version=stable
+
+    - name: Run setup.py develop for spatial
+      command: chdir=/usr/lib/ckan/{{ virtualenv }}/src/ckanext-spatial/ ../../bin/python setup.py develop
+
+    - name: Install requirements for spatial
+      pip: requirements=/usr/lib/ckan/{{ virtualenv }}/src/ckanext-spatial/pip-requirements.txt virtualenv=/usr/lib/ckan/{{ virtualenv }}
+
+    - name: Add spatial plugins to the ini file
+      lineinfile: dest=/etc/ckan/{{ virtualenv }}/production.ini
+                         backup=yes
+                         backrefs=yes
+                         state=present
+                         regexp='ckan.plugins\s?=(.*)'
+                         line='ckan.plugins =\1 spatial_metadata spatial_query csw_harvester'
+
+    - name: Add spatial options to the ini file (I)
+      lineinfile: dest=/etc/ckan/{{ virtualenv }}/production.ini
+                         backup=yes
+                         state=present
+                         regexp='^ckanext.spatial.search_backend=solr'
+                         line='ckanext.spatial.search_backend=solr\nckanext.spatial.harvest.continue_on_validation_errors=True'
+                         insertafter='ckan.plugins(.*)\n'
+
+    - name: Add spatial options to the ini file (II)
+      lineinfile: dest=/etc/ckan/{{ virtualenv }}/production.ini
+                         backup=yes
+                         state=present
+                         regexp='ckanext.spatial.harvest.continue_on_validation_errors=True'
+                         line='ckanext.spatial.harvest.continue_on_validation_errors=True'
+                         insertafter='ckan.plugins(.*)\n'
+
