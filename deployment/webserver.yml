@@ -7,10 +7,10 @@
     server_name: default.ckanhosted.com
     server_alias: www.default.ckanhosted.com
   tasks:
-  - name: download the necessary packages
+  - name: Download the CKAN package
     get_url: url={{ ckan_package_site}}/{{ ckan_package }} dest=/tmp/ mode=0440 sha256sum={{ ckan_sha }}
 
-  - name: install ckan deps
+  - name: Make sure packages are installed
     apt: pkg={{ item }} state=installed update_cache=yes
     with_items:
       - nginx
@@ -18,23 +18,23 @@
       - libapache2-mod-wsgi
       - libpq5
 
-  - name: check if ckan is installed
+  - name: Check if CKAN is installed, install it if not
     register: ckan_install
     command: dpkg --skip-same-version -i /tmp/{{ ckan_package }}
     changed_when: "ckan_install.stdout.startswith('Selecting')"
 
-  - name: setup apache
+  - name: Setup Apache
     template: src=etc/apache2/ckan_default.j2 dest=/etc/apache2/sites-available/ckan_default owner=www-data group=www-data mode=0544
 
-  - name: enable virtualhost
+  - name: Enable Apache virtualhost
     file: src=/etc/apache2/sites-available/ckan_default dest=/etc/apache2/sites-enabled/ckan_default owner=www-data group=www-data state=link
 
   #TODO: Template-ize ckan config file
   #- name: setup ckan config file
     #template: src=etc/ckan/production.ini dest=/etc/ckan/default/production.ini owner=root group=root mode=0544
 
-  - name: restart apache
+  - name: Restart Apache
     service: name=apache2 state=reloaded
 
-  - name: restart nginx
+  - name: Restart Nginx
     service: name=nginx state=reloaded
