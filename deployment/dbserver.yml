@@ -1,0 +1,38 @@
+---
+- hosts: dbserver
+
+  vars:
+    ckan_user: ckan_default
+    ckan_db: ckan_default
+
+    tmp_files:
+        - tmp/setup_postgis_database.sh
+
+  tasks:
+
+    - name: Make sure packages are installed
+      apt: pkg={{ item }} state=installed update_cache=yes
+      with_items:
+        - postgresql-9.1
+        - postgresql-9.1-postgis
+        - python-psycopg2
+
+    - name: Copy executables
+      template: src={{ item }} dest=/{{ item }} mode=700
+      with_items: tmp_files
+
+      #TODO: What about the password? Set it manually for now
+    - name: Setup Postgresql user
+      sudo_user: postgres
+      postgresql_user: name={{ ckan_user }}
+
+    - name: Setup Postgresql database
+      sudo_user: postgres
+      postgresql_db: db={{ ckan_db }} owner={{ ckan_user }} encoding='UTF-8'
+
+    - name: Setup PostGIS
+      command: /tmp/setup_postgis_database.sh
+
+    - name: Clean up a bit
+      file: path=/{{ item }} state=absent
+      with_items: tmp_files
