@@ -29,7 +29,7 @@
       pip: name=redis version=2.8.0 virtualenv=/usr/lib/ckan/{{ virtualenv }}
 
     - name: Copy all needed files
-      template: src={{ item }} dest=/{{ item }} backup=yes
+      template: src={{ item }} dest=/{{ item }} backup=yes owner=root group=root
       with_items:
         - etc/supervisor/conf.d/ckan-harvest.conf
         - etc/cron.d/ckan-harvest
