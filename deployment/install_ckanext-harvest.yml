@@ -52,7 +52,13 @@
                          insertafter='ckan.plugins(.*)\n'
 
     - name: Restart Redis
-      service: name=redis-server state=reloaded
+      service: name=redis-server state=restarted
 
-    - name: Restart Supervisor
-      service: name=supervisor state=reloaded
+    - name: Restart Supervisor for harvest-fetch
+      supervisorctl: name=harvest-fetch:* state=restarted
+      register: command_result
+      failed_when: "'ERROR' in command_result.msg"
+      # Hack thanks to ansible issue #5844]
+
+    - name: Restart Supervisor for harvest-gather
+      supervisorctl: name=harvest-gather state=restarted
