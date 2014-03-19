@@ -273,3 +273,18 @@ body {
 .site-footer small {
   color: #000000;
 }
+/* Home */
+.homepage header {
+  margin-top: 20px;
+}
+.homepage header h1 {
+  margin-bottom: 0;
+  font-weight: normal;
+}
+.homepage header p {
+  font-size: 19px;
+  font-size: 1.9rem;
+}
+.homepage .search-form .heading {
+  display: none;
+}
