@@ -114,6 +114,8 @@ body {
   background-color: #ffffff;
   background-image: none;
   line-height: 1.7;
+  font-size: 14px;
+  font-size: 1.4rem;
 }
 .account-masthead,
 .masthead {
