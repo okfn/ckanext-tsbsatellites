@@ -1,0 +1,21 @@
+# Ansible playbook for updating the CKAN TSB satellites extensions
+
+---
+- hosts: webserver
+  vars:
+    site: default
+    extension: ckanext-tsbsatellites
+    version: master
+
+  tasks:
+    - name: Checkout version
+      action: git repo=https://github.com/okfn/{{ extension }} dest=/usr/lib/ckan/{{ site }}/src/{{ extension }} version={{ version }} force=yes
+
+    - name: Pull code
+      action: command chdir=/usr/lib/ckan/{{ site }}/src/{{ extension }}/ git pull
+      register: update
+
+    - name: Reload apache
+      action: service name=apache2 state=reloaded
+      when: update.changed
+
