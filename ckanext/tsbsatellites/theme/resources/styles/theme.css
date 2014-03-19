@@ -1,0 +1,274 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700);
+/* LESS Document */
+@font-face {
+  font-family: 'satellites';
+  src: url('fonts/satellites.eot?-4iazim');
+  src: url('fonts/satellites.eot?#iefix-4iazim') format('embedded-opentype'), url('fonts/satellites.woff?-4iazim') format('woff'), url('fonts/satellites.ttf?-4iazim') format('truetype'), url('fonts/satellites.svg?-4iazim#satellites') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.icon-search:before,
+.icon-save:before,
+.icon-arrow-right:before,
+.icon-arrow-left:before,
+.icon-envelope-alt:before {
+  font-family: 'satellites';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-search:before {
+  content: "\e600";
+}
+.icon-save:before {
+  content: "\e601";
+}
+.icon-arrow-right:before {
+  content: "\e602";
+}
+.icon-arrow-left:before {
+  content: "\e604";
+}
+.icon-envelope-alt:before {
+  content: "\e603";
+}
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  -webkit-border-radius: 0;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0;
+  -moz-background-clip: padding;
+  border-radius: 0;
+  background-clip: padding-box;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border-color: #000000;
+}
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border-color: #c90019;
+  -webkit-box-shadow: 0px 0px 0px 1px #c90019;
+  -moz-box-shadow: 0px 0px 0px 1px #c90019;
+  box-shadow: 0px 0px 0px 1px #c90019;
+}
+::-webkit-input-placeholder {
+  font-style: italic;
+}
+:-moz-placeholder {
+  /* Firefox 18- */
+
+  font-style: italic;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+
+  font-style: italic;
+}
+:-ms-input-placeholder {
+  font-style: italic;
+}
+html {
+  font-size: 62.5%;
+  /* Sets up the Base 10 */
+
+}
+body {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #000000;
+  background-color: #ffffff;
+  background-image: none;
+}
+.account-masthead,
+.masthead {
+  background-color: #ffffff;
+  background-image: none;
+  color: #000000;
+}
+.account-masthead a,
+.masthead a {
+  color: #000000;
+}
+.account-masthead {
+  padding-top: 10px;
+}
+.account-masthead .account ul li {
+  border: none;
+}
+.account-masthead .account ul li a {
+  color: #000000;
+  padding: 0;
+  margin-left: 15px;
+  font-weight: normal;
+  font-style: italic;
+}
+.account-masthead .account ul li a i {
+  display: none;
+}
+.account-masthead .account ul li a:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+.account-masthead .account.authed .image {
+  padding: 0;
+}
+.account-masthead .account.authed .image .gravatar {
+  display: none;
+}
+.account-masthead .account.authed .image .username {
+  text-transform: capitalize;
+  margin: 0;
+}
+.account-masthead .account .notifications a span,
+.account-masthead .account .notifications a:hover span,
+.account-masthead .account .notifications.notifications-important a span {
+  background-color: #ffffff;
+  font-size: inherit;
+  margin: 0;
+  padding: 0;
+  color: #000000;
+}
+.account-masthead .account .notifications a span.badge {
+  background-color: #000000;
+  font-size: 12px;
+  font-size: 1.2rem;
+  padding: 1px 5px;
+  -webkit-border-radius: 8px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 8px;
+  -moz-background-clip: padding;
+  border-radius: 8px;
+  background-clip: padding-box;
+  color: #fff;
+  font-style: normal;
+  display: none;
+}
+.account-masthead .account .notifications.notifications-important a span.badge {
+  background-color: #c90019;
+  display: inline-block;
+}
+.masthead {
+  min-height: 65px;
+}
+.masthead .navigation {
+  margin: 0 0 0 0;
+}
+.masthead hgroup.header-image a {
+  display: inline-block;
+  height: 44px;
+  margin-top: -7px;
+}
+.masthead hgroup.header-image a img {
+  max-height: 100%;
+}
+.masthead hgroup h1 {
+  font-weight: 800;
+  letter-spacing: 0;
+  margin: 6px 0 0 0;
+}
+.masthead hgroup.header-text-logo-tagline h1 {
+  margin-top: -10px;
+}
+.masthead hgroup h2 {
+  bottom: -12px;
+}
+.masthead .navigation .nav-pills li a {
+  font-size: 24px;
+  font-size: 2.4rem;
+  border-bottom: solid 2px #ffffff;
+  -webkit-border-radius: 0;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0;
+  -moz-background-clip: padding;
+  border-radius: 0;
+  background-clip: padding-box;
+  padding: 15px 0 24px 0;
+  margin: 0 0 0 35px;
+}
+.masthead .navigation .nav-pills li a:hover,
+.masthead .navigation .nav-pills li.active a {
+  background-color: transparent;
+  color: #000000;
+  border-bottom-color: #000000;
+}
+.masthead .navigation .nav-pills li.active a {
+  border-bottom-color: #c90019;
+}
+.masthead .site-search {
+  display: none;
+}
+[role="main"],
+.main {
+  background-image: none;
+  background-color: #ffffff;
+  -webkit-box-shadow: inset 0px 14px 10px -10px rgba(50, 50, 50, 0.2);
+  -moz-box-shadow: inset 0px 14px 10px -10px rgba(50, 50, 50, 0.2);
+  box-shadow: inset 0px 14px 10px -10px rgba(50, 50, 50, 0.2);
+}
+/* Search */
+.search-form input[type="text"].search {
+  border-color: #c90019;
+  border-width: 2px;
+}
+.search-form {
+  padding: 0;
+  border: none;
+}
+.search-form .search-input.search-giant button {
+  background-color: #c90019;
+  margin: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  height: auto;
+  width: 55px;
+}
+.search-form .search-input.search-giant button i {
+  color: #fff;
+}
+/* Footer */
+.site-footer {
+  background-color: #ffffff;
+  background-image: none;
+  color: #000000;
+}
+.site-footer a,
+.site-footer label,
+.site-footer small {
+  color: #000000;
+}

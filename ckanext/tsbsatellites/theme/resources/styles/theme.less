@@ -1,0 +1,235 @@
+/* LESS Document */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700);
+@import url(lesshat.less);
+@import url(fonts.less);
+
+
+@red: #C90019;
+@header-colour: #fff;
+@main-bg: #fff;
+@text-colour: #000;
+
+@body-font: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+.font-size(@sizeValue) {
+  @remValue: (@sizeValue / 10);
+  @pxValue: @sizeValue;
+  font-size: ~"@{pxValue}px"; 
+  font-size: ~"@{remValue}rem";
+}
+
+
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  .border-radius(0);
+  .box-shadow(none);
+  border-color:@text-colour;
+}
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border-color:@red;
+  .box-shadow(0px 0px 0px 1px @red);
+}
+
+
+::-webkit-input-placeholder {
+ font-style:italic;
+}
+:-moz-placeholder { /* Firefox 18- */
+  font-style:italic;  
+}
+::-moz-placeholder {  /* Firefox 19+ */
+ font-style:italic;  
+}
+:-ms-input-placeholder {  
+  font-style:italic;  
+}
+
+html {
+  font-size: 62.5%; /* Sets up the Base 10 */
+}
+
+body {
+  font-family:@body-font;
+  color:@text-colour;
+  background-color:@main-bg;
+  background-image:none;
+}
+
+.account-masthead,
+.masthead {
+  background-color:@header-colour;
+  background-image:none;
+  color:@text-colour;
+  a {
+    color:@text-colour;
+  }
+}
+.account-masthead {
+  padding-top:10px;
+  .account ul li {
+    border:none;
+  }
+  .account ul li a {
+    color:@text-colour;
+    padding:0;
+    margin-left:15px;
+    font-weight:normal;
+    font-style:italic;
+    i {
+      display:none;
+    }
+  }
+  .account ul li a:hover {
+    background-color: @header-colour;
+    color: @text-colour;
+  }
+  .account.authed .image {
+    padding:0;
+    .gravatar {
+      display:none;
+    }
+    .username {
+      text-transform:capitalize;
+      margin:0;
+    }
+  }
+  .account .notifications a span,
+  .account .notifications a:hover span,
+  .account .notifications.notifications-important a span {
+    background-color: @header-colour;
+    font-size: inherit;
+    margin: 0;
+    padding: 0;
+    color:@text-colour;
+  }
+  .account .notifications a span.badge {
+    background-color:@text-colour;
+    .font-size(12);
+    padding: 1px 5px;
+    .border-radius(8);
+    color:#fff;
+    font-style:normal;
+    display:none;
+  }
+  .account .notifications.notifications-important a span.badge {
+    background-color:@red;
+    display:inline-block;
+  }
+}
+.masthead {
+  min-height:65px;
+  .navigation {
+    margin:0 0 0 0;
+  }
+  hgroup.header-image a {
+    display:inline-block;
+    height:44px;
+    margin-top:-7px;
+    img {
+      max-height:100%;
+    }
+  }
+  hgroup h1 {
+    font-weight: 800;
+    letter-spacing: 0;
+    margin: 6px 0 0 0;
+  }
+  hgroup.header-text-logo-tagline h1 {
+    margin-top:-10px;
+  }
+  hgroup h2 {
+    bottom: -12px;
+  }
+  .navigation .nav-pills li a {
+    .font-size(24);
+    border-bottom:solid 2px @header-colour;
+    .border-radius(0);
+    padding:15px 0 24px 0;
+    margin:0 0 0 35px;
+  }
+  .navigation .nav-pills li a:hover,
+  .navigation .nav-pills li.active a {
+    background-color: transparent;
+    color:@text-colour;
+    border-bottom-color:@text-colour;
+  }
+  .navigation .nav-pills li.active a {
+    border-bottom-color:@red;
+  }
+  .site-search {
+    display:none;
+  }
+}
+
+[role="main"],
+.main {
+  background-image:none;
+  background-color:@main-bg;
+  .box-shadow(inset 0px 14px 10px -10px rgba(50, 50, 50, 0.2));
+}
+
+
+/* Search */
+.search-form input[type="text"].search {
+  border-color:@red;
+  border-width:2px;
+}
+.search-form {
+  padding:0;
+  border:none;
+  .search-input.search-giant button {
+    background-color:@red;
+    margin:0;
+    top:0;
+    right:0;
+    bottom:0;
+    height:auto;
+    width:55px;
+    i {
+      color:#fff;
+    }
+    
+  }
+}
+
+
+/* Footer */
+.site-footer {
+  background-color:@main-bg;
+  background-image:none;
+  color: @text-colour;
+  a,
+  label,
+  small {
+    color: @text-colour;
+  }
+}
