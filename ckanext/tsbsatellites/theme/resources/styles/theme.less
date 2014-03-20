@@ -139,9 +139,19 @@ a:hover, a:focus {
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
-.btn-primary.active {
+.btn-primary.active,
+.btn-group.open .btn-primary.dropdown-toggle {
   background-color: darken(@red, 5%);
 }
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-submenu:hover > a,
+.dropdown-submenu:focus > a {
+  background-color: @red;
+  background-image: none;
+}
+
 
 html {
   font-size: 62.5%; /* Sets up the Base 10 */
@@ -438,6 +448,29 @@ ul.category-grid {
 .select2-drop.select2-drop-above.select2-drop-active {
   border-color:@red;
   .box-shadow(none);
+}
+
+.stages {
+  margin: -20px 0 20px 0;
+}
+
+.editor .editor-info-block a {
+  color: @red;
+}
+.form-actions {
+  margin-left: 0;
+  margin-right: 0;
+}
+.form-horizontal .form-actions {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.page-header {
+  background-color: @main-bg;
+}
+.page-header .content_action {
+  margin-right: 0;
 }
 
 

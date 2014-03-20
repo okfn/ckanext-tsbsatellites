@@ -164,8 +164,16 @@ a:focus {
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
-.btn-primary.active {
+.btn-primary.active,
+.btn-group.open .btn-primary.dropdown-toggle {
   background-color: #b00016;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-submenu:hover > a,
+.dropdown-submenu:focus > a {
+  background-color: #c90019;
+  background-image: none;
 }
 html {
   font-size: 62.5%;
@@ -484,6 +492,26 @@ ul.category-grid li:nth-child(8n+8) a {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+}
+.stages {
+  margin: -20px 0 20px 0;
+}
+.editor .editor-info-block a {
+  color: #c90019;
+}
+.form-actions {
+  margin-left: 0;
+  margin-right: 0;
+}
+.form-horizontal .form-actions {
+  padding-left: 0;
+  padding-right: 0;
+}
+.page-header {
+  background-color: #ffffff;
+}
+.page-header .content_action {
+  margin-right: 0;
 }
 /* Modules */
 .module-narrow .module-heading,
