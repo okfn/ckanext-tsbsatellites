@@ -379,6 +379,59 @@ body {
 .homepage .search-form .heading {
   display: none;
 }
+.homepage .browse-category h3 {
+  font-weight: normal;
+  font-style: italic;
+  color: #808080;
+  margin-top: 40px;
+}
+ul.category-grid {
+  margin: 0;
+}
+ul.category-grid li {
+  display: block;
+  float: left;
+  width: 16.667%;
+}
+ul.category-grid li a {
+  display: block;
+  text-align: center;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  font-size: 1.6rem;
+  height: 54px;
+  line-height: 54px;
+  padding: 0 15px;
+  background-color: #c90019;
+}
+ul.category-grid li a:hover {
+  text-decoration: none;
+  opacity: 0.8;
+}
+ul.category-grid li:nth-child(8n+2) a {
+  background-color: #c1c900;
+}
+ul.category-grid li:nth-child(8n+3) a {
+  background-color: #5cc900;
+}
+ul.category-grid li:nth-child(8n+4) a {
+  background-color: #c94b00;
+}
+ul.category-grid li:nth-child(8n+5) a {
+  background-color: #009fc9;
+}
+ul.category-grid li:nth-child(8n+6) a {
+  background-color: #8f00c9;
+}
+ul.category-grid li:nth-child(8n+7) a {
+  background-color: #2a00c9;
+}
+ul.category-grid li:nth-child(8n+8) a {
+  background-color: #c9009f;
+}
 /* Dataset Search */
 .search-form h2 {
   font-size: 14px;

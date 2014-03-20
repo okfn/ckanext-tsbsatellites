@@ -8,6 +8,15 @@
 @header-colour: #fff;
 @main-bg: #fff;
 @text-colour: #000;
+@cat-col-1: @red;
+@cat-col-2: spin(@red, 70);
+@cat-col-3: spin(@red, 100);
+@cat-col-4: spin(@red, 30);
+@cat-col-5: spin(@red, 200);
+@cat-col-6: spin(@red, 290);
+@cat-col-7: spin(@red, 260);
+@cat-col-8: spin(@red, 320);
+@grey: #808080;
 
 @body-font: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
@@ -332,6 +341,58 @@ body {
   }
   .search-form .heading {
     display:none;
+  }
+  .browse-category h3 {
+    font-weight:normal;
+    font-style:italic;
+    color:@grey;
+    margin-top:40px;
+  }
+}
+ul.category-grid {
+  margin:0;
+  li {
+    display:block;
+    float:left;
+    width:16.667%;
+    a {
+      display:block;
+      text-align:center;
+      color:#fff;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      .font-size(16);
+      height:54px;
+      line-height:54px;
+      padding:0 15px;
+      background-color:@cat-col-1;
+    }
+    a:hover {
+      text-decoration:none;
+      opacity:0.8;
+    }
+  }
+  li:nth-child(8n+2) a {
+    background-color:@cat-col-2;
+  }
+  li:nth-child(8n+3) a {
+    background-color:@cat-col-3;
+  }
+  li:nth-child(8n+4) a {
+    background-color:@cat-col-4;
+  }
+  li:nth-child(8n+5) a {
+    background-color:@cat-col-5;
+  }
+  li:nth-child(8n+6) a {
+    background-color:@cat-col-6;
+  }
+  li:nth-child(8n+7) a {
+    background-color:@cat-col-7;
+  }
+  li:nth-child(8n+8) a {
+    background-color:@cat-col-8;
   }
 }
 
