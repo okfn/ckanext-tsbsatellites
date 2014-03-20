@@ -485,3 +485,24 @@ ul.category-grid li:nth-child(8n+8) a {
   -moz-box-shadow: none;
   box-shadow: none;
 }
+/* Modules */
+.module-narrow .module-heading,
+.module-narrow .module-content,
+.module-narrow .module-footer {
+  padding-left: 0;
+  padding-right: 0;
+}
+.module-heading {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+.module-heading i {
+  display: none;
+}
+.module-shallow .module-content {
+  padding-top: 5px;
+}
+#dataset-map .module-heading {
+  color: #ffffff;
+}

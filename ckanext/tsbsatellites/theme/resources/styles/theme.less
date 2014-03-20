@@ -439,3 +439,27 @@ ul.category-grid {
   border-color:@red;
   .box-shadow(none);
 }
+
+
+/* Modules */
+.module-narrow .module-heading,
+.module-narrow .module-content,
+.module-narrow .module-footer {
+  padding-left: 0;
+  padding-right: 0;
+}
+.module-heading {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  i {
+    display:none;
+  }
+}
+.module-shallow .module-content {
+  padding-top:5px;
+}
+
+#dataset-map .module-heading {
+  color:@main-bg;
+}
