@@ -1,0 +1,17 @@
+- hosts: webserver
+  vars:
+    virtualenv: default
+  tasks:
+    - name: Get ckanext-pages extension
+      git: repo=https://github.com/okfn/ckanext-pages dest=/usr/lib/ckan/{{ virtualenv }}/src/ckanext-pages
+
+    - name: Run setup.py develop for pages
+      command: chdir=/usr/lib/ckan/{{ virtualenv }}/src/ckanext-pages/ ../../bin/python setup.py develop
+
+    - name: Add pages plugins to the ini file
+      lineinfile: dest=/etc/ckan/{{ virtualenv }}/production.ini
+                         backup=yes
+                         backrefs=yes
+                         state=present
+                         regexp='ckan.plugins\s?=(.*)'
+                         line='ckan.plugins =\1 pages'

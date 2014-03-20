@@ -1,0 +1,27 @@
+- hosts: webserver
+  vars:
+    virtualenv: default
+    gacode: UA1234567
+  tasks:
+    - name: Get ckanext-googleanalytics extension
+      git: repo=https://github.com/okfn/ckanext-googleanalytics dest=/usr/lib/ckan/{{ virtualenv }}/src/ckanext-googleanalytics
+
+    - name: Run setup.py develop for googleanalytics
+      command: chdir=/usr/lib/ckan/{{ virtualenv }}/src/ckanext-googleanalytics/ ../../bin/python setup.py develop
+
+    - name: Add googleanalytics plugins to the ini file
+      lineinfile: dest=/etc/ckan/{{ virtualenv }}/production.ini
+                         backup=yes
+                         backrefs=yes
+                         state=present
+                         regexp='ckan.plugins\s?=(.*)'
+                         line='ckan.plugins =\1 googleanalytics'
+
+    - name: Add googleanalytics plugins to the ini file
+      lineinfile: dest=/etc/ckan/{{ virtualenv }}/production.ini
+                         backup=yes
+                         backrefs=yes
+                         state=present
+                         regexp='googleanalyticss\s?=(.*)'
+                         line='googleanalytics.id = {{ gacode }}'
+
