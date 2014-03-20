@@ -42,7 +42,8 @@ input[type="url"],
 input[type="search"],
 input[type="tel"],
 input[type="color"],
-.uneditable-input {
+.uneditable-input,
+.select2-container-multi .select2-choices {
   .border-radius(0);
   .box-shadow(none);
   border-color:@text-colour;
@@ -62,7 +63,8 @@ input[type="url"]:focus,
 input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
-.uneditable-input:focus {
+.uneditable-input:focus,
+.select2-container-multi.select2-container-active .select2-choices {
   border-color:@red;
   .box-shadow(0px 0px 0px 1px @red);
 }
@@ -334,7 +336,7 @@ body {
 }
 
 
-/* Search Page */
+/* Dataset Search */
 .search-form h2 {
   .font-size(14);
   font-weight:normal;
@@ -348,4 +350,31 @@ body {
 .dataset-resources li a {
   background-color: transparent;
   margin-right:5px;
+}
+
+/* Dataset Add */
+.editor .editor-info-block {
+  background-color:@main-bg;
+  border:none;
+  color: @text-colour;
+  padding: 0;
+}
+.editor textarea {
+  border-style:solid;
+  border-width:1px;
+  .border-radius(0);
+}
+.control-full .select2-container {
+  width: 540px !important;
+}
+.select2-drop-active {
+  border-color:@red;
+  .border-radius(0);
+}
+.select2-container-active
+.select2-choice,
+.select2-container-active .select2-choices,
+.select2-drop.select2-drop-above.select2-drop-active {
+  border-color:@red;
+  .box-shadow(none);
 }
