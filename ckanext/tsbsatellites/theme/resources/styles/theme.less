@@ -20,6 +20,13 @@
 
 
 /* Inputs */
+input,
+button,
+select,
+textarea {
+  font-family:@body-font;
+}
+
 textarea,
 input[type="text"],
 input[type="password"],
@@ -72,6 +79,23 @@ input[type="color"]:focus,
 :-ms-input-placeholder {  
   font-style:italic;  
 }
+
+select {
+  color:@text-colour;
+}
+
+.btn,
+label {
+  font-weight: normal;
+}
+
+a {
+  color: @red;
+}
+a:hover, a:focus {
+  color: darken(@red, 5%);
+}
+
 
 /* Buttons */
 .btn,
@@ -256,7 +280,7 @@ body {
   padding-right:0;
 }
 
-/* Search */
+/* Search Form */
 .search-form input[type="text"].search {
   border-color:@red;
   border-width:2px;
@@ -275,7 +299,6 @@ body {
     i {
       color:#fff;
     }
-    
   }
 }
 
@@ -308,4 +331,21 @@ body {
   .search-form .heading {
     display:none;
   }
+}
+
+
+/* Search Page */
+.search-form h2 {
+  .font-size(14);
+  font-weight:normal;
+}
+.dataset-heading a {
+  color: inherit;
+}
+.dataset-item {
+  border-bottom: 2px solid #DDDDDD;
+}
+.dataset-resources li a {
+  background-color: transparent;
+  margin-right:5px;
 }
