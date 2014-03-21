@@ -550,6 +550,8 @@ ul.category-grid li:nth-child(8n+8) a {
 .form-actions {
   margin-left: 0;
   margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 .form-horizontal .form-actions {
   padding-left: 0;
