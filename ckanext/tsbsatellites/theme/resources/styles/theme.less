@@ -16,7 +16,8 @@
 @cat-col-6: spin(@red, 290);
 @cat-col-7: spin(@red, 260);
 @cat-col-8: spin(@red, 320);
-@grey: #808080;
+@light-text: #808080;
+@box-bg: #f2f2f2;
 
 @body-font: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
@@ -394,7 +395,7 @@ body {
   .browse-category h3 {
     font-weight:normal;
     font-style:italic;
-    color:@grey;
+    color:@light-text;
     margin-top:40px;
   }
 }
@@ -546,9 +547,16 @@ ul.category-grid {
 }
 .media-item {
   width:184px;
+  background-color:@box-bg;
 }
-.media-view:hover, .media-view.hovered {
+.media-view {
+  .border-radius(0);
+  border-color:@box-bg;
+}
+.media-view:hover,
+.media-view.hovered {
   border-color: @red;
+  .box-shadow(0px 0px 0px 1px @red);
 }
 .media-view:hover .banner,
 .media-view.hovered .banner {

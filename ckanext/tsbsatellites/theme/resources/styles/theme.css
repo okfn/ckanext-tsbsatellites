@@ -591,10 +591,23 @@ ul.category-grid li:nth-child(8n+8) a {
 }
 .media-item {
   width: 184px;
+  background-color: #f2f2f2;
+}
+.media-view {
+  -webkit-border-radius: 0;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0;
+  -moz-background-clip: padding;
+  border-radius: 0;
+  background-clip: padding-box;
+  border-color: #f2f2f2;
 }
 .media-view:hover,
 .media-view.hovered {
   border-color: #c90019;
+  -webkit-box-shadow: 0px 0px 0px 1px #c90019;
+  -moz-box-shadow: 0px 0px 0px 1px #c90019;
+  box-shadow: 0px 0px 0px 1px #c90019;
 }
 .media-view:hover .banner,
 .media-view.hovered .banner {
