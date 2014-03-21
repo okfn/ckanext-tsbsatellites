@@ -582,3 +582,21 @@ ul.category-grid li:nth-child(8n+8) a {
 #dataset-map .module-heading {
   color: #ffffff;
 }
+/* Grids */
+.media-grid {
+  background-image: none;
+  background-color: transparent;
+  border: none;
+  margin: 0 -16px;
+}
+.media-item {
+  width: 184px;
+}
+.media-view:hover,
+.media-view.hovered {
+  border-color: #c90019;
+}
+.media-view:hover .banner,
+.media-view.hovered .banner {
+  background-color: #000000;
+}
