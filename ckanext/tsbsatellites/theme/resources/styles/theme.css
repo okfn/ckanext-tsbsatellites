@@ -510,6 +510,42 @@ ul.category-grid li:nth-child(8n+8) a {
   background-color: transparent;
   margin-right: 5px;
 }
+.secondary .nav-item,
+.secondary .nav-aside li {
+  list-style: square;
+  color: #808080;
+  padding-left: 8px;
+  margin-left: 15px;
+  border: none;
+}
+.secondary .nav-item.active,
+.secondary .nav-aside li.active {
+  color: #000000;
+  background-color: transparent;
+}
+.secondary .nav-item.active > a,
+.secondary .nav-aside li.active a,
+.secondary .nav-item.active > a:hover,
+.secondary .nav-aside li.active a:hover {
+  background-color: transparent;
+  color: #000000;
+}
+.secondary .nav-item.active > a:before,
+.secondary .nav-aside li.active a:before {
+  background-image: none;
+}
+.secondary .nav > li > a:hover,
+.secondary .nav > li > a:focus {
+  background-color: transparent;
+}
+.module-footer {
+  border: none;
+}
+.module-footer .read-more {
+  font-weight: normal;
+  font-size: 12px;
+  font-size: 1.2rem;
+}
 /* Dataset Add */
 .editor .editor-info-block {
   background-color: #ffffff;
