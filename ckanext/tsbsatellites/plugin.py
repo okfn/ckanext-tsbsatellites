@@ -75,3 +75,12 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
         facets_dict['begin-collection_date'] = p.toolkit._('Date of Collection')
 
         return facets_dict
+
+    def group_facets(self, facets_dict, group_type, package_type):
+        facets_dict.clear()
+        return facets_dict
+
+    def organization_facets(self, facets_dict, organization_type, package_type):
+        facets_dict.clear()
+        return facets_dict
+
