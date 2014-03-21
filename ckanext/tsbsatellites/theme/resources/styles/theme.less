@@ -323,6 +323,45 @@ body {
   }
 }
 
+.pill {
+  background-color: @text-colour;
+  .border-radius(0);
+  position:relative;
+  a.remove {
+    position:absolute;
+    background-color:@main-bg;
+    color:@text-colour;
+    width:9px;
+    height:9px;
+    top:-5px;
+    right:-5px;
+    overflow:hidden;
+    .border-radius(6);
+    border:solid 2px @text-colour;
+    i {
+      font-size:9px;
+      display:block;
+      line-height:9px;
+      text-align:center;
+    }
+  }
+}
+.search-form .filter-list .pill {
+  margin-right:12px;
+}
+.search-form .filter-list .pill:after {
+  content:'+';
+  position:absolute;
+  color:@text-colour;
+  right:-13px;
+  top:1px;
+  font-size:18px;
+  font-weight:bold;
+}
+.search-form .filter-list .pill:last-child:after {
+  display:none;
+}
+
 
 /* Footer */
 .site-footer {
