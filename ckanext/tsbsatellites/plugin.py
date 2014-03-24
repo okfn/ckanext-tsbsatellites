@@ -40,7 +40,7 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
 
         for key, iso_key in [
             ('topic-category', 'topic-category'),
-            ('use-constraints', 'use-constraints'),
+            ('use-constraints', 'limitations-on-public-access'),
 
             # Copy the temporal extent so it can be indexed as date
             ('begin-collection_date', 'temporal-extent-begin'),
