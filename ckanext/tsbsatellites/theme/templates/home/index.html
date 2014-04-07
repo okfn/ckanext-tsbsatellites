@@ -37,20 +37,17 @@
         </form>
       {% endblock %}
       <section class="browse-category">
+        {% set categories = h.get_categories() %}
         <h3>Browse by category</h3>
         <ul class="category-grid">
-          <li><a href="#">Biota</a></li>
-          <li><a href="#">Boundaries</a></li>
-          <li><a href="#">Climatology</a></li>
-          <li><a href="#">Economy</a></li>
-          <li><a href="#">Elevation</a></li>
-          <li><a href="dataset?topic-category=environment">Environment</a></li>
-          <li><a href="#">Farming</a></li>
-          <li><a href="#">Geoscientific</a></li>
-          <li><a href="#">Health</a></li>
-          <li><a href="#">Imagery</a></li>
-          <li><a href="#">Inland Waters</a></li>
-          <li><a href="#">Intelligence</a></li>
+          {% for category in categories %}
+            {% if category.count %}
+              <li><a href="/dataset?topic-category={{ category.name }}">{{ category.short_title }}</a></li>
+            {% else %}
+              {# TODO: Differentiate the ones without any records #}
+              <li><a href="#">{{ category.short_title }}</a></li>
+            {% endif %}
+          {% endfor %}
         </ul>
       </section>
     </div>

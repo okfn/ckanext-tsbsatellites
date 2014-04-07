@@ -2,11 +2,13 @@ import ckan.plugins as p
 
 from ckanext.spatial.interfaces import ISpatialHarvester
 
+import ckanext.tsbsatellites.helpers as satellites_helpers
 
 class TSBSatellitesPlugin(p.SingletonPlugin):
 
     p.implements(ISpatialHarvester)
     p.implements(p.IFacets)
+    p.implements(p.ITemplateHelpers)
     p.implements(p.IConfigurer)
 
     # IConfigurer
@@ -83,4 +85,19 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
     def organization_facets(self, facets_dict, organization_type, package_type):
         facets_dict.clear()
         return facets_dict
+
+    # ITemplateHelpers
+    def get_helpers(self):
+
+        function_names = (
+            'get_categories',
+        )
+        return _get_module_functions(satellites_helpers, function_names)
+
+def _get_module_functions(module, function_names):
+    functions = {}
+    for f in function_names:
+        functions[f] = module.__dict__[f]
+
+    return functions
 
