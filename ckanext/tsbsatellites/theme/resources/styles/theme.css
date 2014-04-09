@@ -119,6 +119,10 @@ select {
 label {
   font-weight: normal;
 }
+strong em {
+  font-weight: 400;
+  color: #c90019;
+}
 a {
   color: #c90019;
 }
@@ -321,8 +325,8 @@ body > footer {
   -moz-box-shadow: inset 0px 14px 10px -10px rgba(50, 50, 50, 0.2);
   box-shadow: inset 0px 14px 10px -10px rgba(50, 50, 50, 0.2);
 }
-.breadcrumb {
-  display: none;
+.toolbar .breadcrumb a {
+  color: #000000;
 }
 .wrapper {
   border: none;
@@ -428,15 +432,18 @@ body > footer {
 }
 /* Home */
 .homepage header {
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 40px;
 }
 .homepage header h1 {
   margin-bottom: 0;
-  font-weight: normal;
+  font-size: 34px;
+  font-size: 3.4rem;
 }
 .homepage header p {
-  font-size: 19px;
-  font-size: 1.9rem;
+  font-size: 28px;
+  font-size: 2.8rem;
+  line-height: 1.28;
 }
 .homepage .search-form .heading {
   display: none;
@@ -509,6 +516,33 @@ ul.category-grid li:nth-child(8n+8) a {
 .dataset-resources li a {
   background-color: transparent;
   margin-right: 5px;
+}
+.styled-select {
+  width: 160px;
+  overflow: hidden;
+  background-image: url(/images/select-arrow.png);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 7px 6px;
+}
+.styled-select select {
+  background: transparent;
+  width: 180px;
+  border: none;
+  -webkit-appearance: none;
+  outline: none;
+  line-height: normal;
+}
+.search-form .control-order-by .styled-select {
+  display: inline-block;
+}
+.search-form .control-order-by .styled-select select {
+  width: 200px;
+}
+.search-form .control-order-by label {
+  display: inline-block;
+  float: left;
+  line-height: 30px;
 }
 .secondary .nav-item,
 .secondary .nav-aside li {

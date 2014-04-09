@@ -101,6 +101,11 @@ label {
   font-weight: normal;
 }
 
+strong em {
+  font-weight:400;
+  color:@red;
+}
+
 a {
   color: @red;
 }
@@ -287,8 +292,8 @@ body > footer {
   .box-shadow(inset 0px 14px 10px -10px rgba(50, 50, 50, 0.2));
 }
 
-.breadcrumb {
-  display:none;
+.toolbar .breadcrumb a {
+  color:@text-colour;
 }
 
 .wrapper {
@@ -387,13 +392,15 @@ body > footer {
 /* Home */
 .homepage {
   header {
-    margin-top:20px;
+    margin-top:30px;
+    margin-bottom:40px;
     h1 {
       margin-bottom:0;
-      font-weight:normal;
+      .font-size(34);
     }
     p {
-      .font-size(19);
+      .font-size(28);
+      line-height:1.28;
     }
   }
   .search-form .heading {
@@ -469,7 +476,34 @@ ul.category-grid {
   background-color: transparent;
   margin-right:5px;
 }
+.styled-select {
+  width: 160px;
+  overflow: hidden;
+  background-image:url(/images/select-arrow.png);
+  background-repeat:no-repeat;
+  background-position:right center;
+  background-size:7px 6px;
+}
+.styled-select select {
+  background: transparent;
+  width: 180px;
+  border: none;
+  -webkit-appearance: none;
+  outline: none;
+  line-height:normal;
+}
 
+.search-form .control-order-by .styled-select {
+  display: inline-block;
+}
+.search-form .control-order-by .styled-select select {
+  width: 200px;
+}
+.search-form .control-order-by label {
+  display:inline-block;
+  float:left;
+  line-height:30px;
+}
 
 .secondary .nav-item,
 .secondary .nav-aside li {
