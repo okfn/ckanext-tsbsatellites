@@ -469,7 +469,34 @@ ul.category-grid {
   background-color: transparent;
   margin-right:5px;
 }
+.styled-select {
+  width: 160px;
+  overflow: hidden;
+  background-image:url(/images/select-arrow.png);
+  background-repeat:no-repeat;
+  background-position:right center;
+  background-size:7px 6px;
+}
+.styled-select select {
+  background: transparent;
+  width: 180px;
+  border: none;
+  -webkit-appearance: none;
+  outline: none;
+  line-height:normal;
+}
 
+.search-form .control-order-by .styled-select {
+  display: inline-block;
+}
+.search-form .control-order-by .styled-select select {
+  width: 200px;
+}
+.search-form .control-order-by label {
+  display:inline-block;
+  float:left;
+  line-height:30px;
+}
 
 .secondary .nav-item,
 .secondary .nav-aside li {
