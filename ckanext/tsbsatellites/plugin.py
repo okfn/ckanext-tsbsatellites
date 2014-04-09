@@ -6,7 +6,7 @@ import ckanext.tsbsatellites.helpers as satellites_helpers
 
 class TSBSatellitesPlugin(p.SingletonPlugin):
 
-    p.implements(ISpatialHarvester)
+    p.implements(ISpatialHarvester, inherit=True)
     p.implements(p.IFacets)
     p.implements(p.ITemplateHelpers)
     p.implements(p.IConfigurer)
@@ -58,6 +58,14 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
             package_dict['extras'].append(
                 {'key': 'data-format', 'value': data_format[0]['name']},
             )
+
+
+        # Default all resource formats to HTML if no format yet defined
+        # We might needed to expanded this some point
+        for resource in package_dict.get('resources', []):
+            if not resource.get('format'):
+                resource['format'] = 'HTML'
+
 
         return package_dict
 
