@@ -101,6 +101,11 @@ label {
   font-weight: normal;
 }
 
+strong em {
+  font-weight:400;
+  color:@red;
+}
+
 a {
   color: @red;
 }
@@ -387,13 +392,15 @@ body > footer {
 /* Home */
 .homepage {
   header {
-    margin-top:20px;
+    margin-top:30px;
+    margin-bottom:40px;
     h1 {
       margin-bottom:0;
-      font-weight:normal;
+      .font-size(34);
     }
     p {
-      .font-size(19);
+      .font-size(28);
+      line-height:1.28;
     }
   }
   .search-form .heading {

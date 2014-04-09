@@ -17,12 +17,10 @@
           {% if intro %}
             {{ h.render_markdown(intro) }}
           {% else %}
-            <h1 class="page-heading">{{ _("Welcome to CKAN") }}</h1>
+            <h1 class="page-heading">{{ _("Data Discovery Hub") }}</h1>
             <p>
-              {% trans %}This is a nice introductory paragraph about CKAN or the site
-              in general. We don't have any copy to go here yet but soon we will
-              {% endtrans %}
-            </p>
+              {% trans %}Satellite data, resources, and applications at your fingertips<br>
+            <strong><em>Explore, Examine, Engage</em></strong> {% endtrans %} </p>
           {% endif %}
         </header>
         <form class="module-content search-form" method="get" action="{% url_for controller='package', action='search' %}">
