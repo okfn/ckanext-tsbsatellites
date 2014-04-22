@@ -41,9 +41,6 @@
           {% for category in categories %}
             {% if category.count %}
               <li><a href="/dataset?topic-category={{ category.name }}">{{ category.short_title }}</a></li>
-            {% else %}
-              {# TODO: Differentiate the ones without any records #}
-              <li><a href="#">{{ category.short_title }}</a></li>
             {% endif %}
           {% endfor %}
         </ul>
