@@ -1,0 +1,13 @@
+/var/log/gather-consumer.log {
+        weekly
+        rotate 5
+        compress
+        missingok
+}
+
+/var/log/fetch-consumer.log {
+        weekly
+        rotate 5
+        compress
+        missingok
+}
