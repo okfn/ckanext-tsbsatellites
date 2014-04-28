@@ -7,21 +7,21 @@ class ISODimension(ISOElement):
         ISOElement(
             name="name",
             search_paths=[
-                'gmd:dimension/gmd:MD_RangeDimension/gmd:sequenceIdentifier/gco:MemberName/gco:aName/gco:CharacterString/text()',
+                'gmd:sequenceIdentifier/gco:MemberName/gco:aName/gco:CharacterString/text()',
             ],
             multiplicity='0..1',
         ),
         ISOElement(
             name="type",
             search_paths=[
-                'gmd:dimension/gmd:MD_RangeDimension/gmd:sequenceIdentifier/gco:MemberName/gco:attributeType/gco:TypeName/gco:aName/gco:CharacterString/text()',
+                'gmd:sequenceIdentifier/gco:MemberName/gco:attributeType/gco:TypeName/gco:aName/gco:CharacterString/text()',
             ],
             multiplicity='0..1',
         ),
         ISOElement(
             name="descriptor",
             search_paths=[
-                'gmd:dimension/gmd:MD_RangeDimension/gmd:sequenceIdentifier/gmd:descriptor/text()',
+                'gmd:sequenceIdentifier/gmd:descriptor/text()',
             ],
             multiplicity='0..1',
         ),
@@ -58,6 +58,23 @@ class CustomISODocument(MappedXmlDocument):
                 'gmd:contentInfo/gmd:MD_ImageDescription/gmd:dimension/gmd:MD_RangeDimension',
             ],
             multiplicity="*",
-        )
+        ),
+        ISOElement(
+            name="frequency-of-collection",
+            search_paths=[
+                "gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:timeInterval/text()",
+                "gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:timeInterval/text()",
+            ],
+            multiplicity="*",
+        ),
+        ISOElement(
+            name="frequency-of-collection-units",
+            search_paths=[
+                "gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:timeInterval/@unit",
+                "gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:timeInterval/@unit",
+            ],
+            multiplicity="*",
+        ),
+
     ]
 

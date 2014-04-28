@@ -2,6 +2,7 @@ import ckan.plugins as p
 
 from ckanext.spatial.interfaces import ISpatialHarvester
 
+from ckanext.tsbsatellites.iso import CustomISODocument
 import ckanext.tsbsatellites.helpers as satellites_helpers
 
 class TSBSatellitesPlugin(p.SingletonPlugin):
@@ -26,46 +27,74 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
         package_dict = data_dict['package_dict']
         iso_values = data_dict['iso_values']
 
-        # If we need to include fields which are not extracted by the default
-        # ISO parser (ie not in iso_values), reparse the ISO doc to extract
-        # them
-        #from ckanext.tsbsatellites.iso import CustomISODocument
-        #xml_string = data_dict['harvest_object'].content
-        #custom_iso_values = CustomISODocument(xml_string).read_values()
+        def _get_value(d, keys):
+            key = keys.pop(0)
+            value = d.get(key)
+            if isinstance(value, dict) and len(keys):
+                return _get_value(value, keys)
+            elif isinstance(value, list) and len(value) and len(keys):
+                return _get_value(value[0], keys)
+            elif isinstance(value, list) and len(value) and len(keys) == 0:
+                return value
+            else:
+                return value or ''
 
+        def _get_extra(package_dict, key):
+            for extra in package_dict.get('extras', []):
+                if extra['key'] == key:
+                    return extra['value']
 
         # These values are extracted by the ISO parser but not added to the
         # package_dict by default
-        package_dict['extras'].append(
-                {'key': 'spatial-resolution', 'value': iso_values.get('spatial-resolution')}
-        )
-
-        for key, iso_key in [
-            ('topic-category', 'topic-category'),
-            ('use-constraints', 'limitations-on-public-access'),
+        for key, iso_keys in [
+            ('topic-category', ['topic-category']),
+            ('spatial-resolution', ['spatial-resolution']),
+            ('use-constraints', ['limitations-on-public-access']),
+            ('alternative-title', ['alternative-title']),
+            ('purpose', ['purpose']),
+            ('lineage', ['lineage']),
+            ('additional-information-source', ['additional-information-source']),
+            ('applications', ['usage','usage']),
+            ('distributor-email', ['distributor', 'contact-info', 'email']),
+            ('data-format', ['data-format', 'name']),
 
             # Copy the temporal extent so it can be indexed as date
-            ('begin-collection_date', 'temporal-extent-begin'),
-            ('end-collection_date', 'temporal-extent-end'),
+            ('begin-collection_date', ['temporal-extent-begin']),
+            ('end-collection_date', ['temporal-extent-end']),
+
         ]:
-            value = iso_values.get(iso_key)[0] if len(iso_values.get(iso_key, [])) else ''
             package_dict['extras'].append(
-                {'key': key, 'value': value}
+                {'key': key, 'value': _get_value(iso_values, iso_keys)}
             )
 
-        data_format = iso_values.get('data-format', [])
-        if len(data_format) and 'name' in data_format[0]:
+        # Fields which are not extracted by the default ISO parser
+        # (ie not in iso_values), reparse the ISO doc to extract
+        # them
+        xml_string = data_dict['harvest_object'].content
+        custom_iso_values = CustomISODocument(xml_string).read_values()
+
+        for key, custom_iso_keys in [
+            ('frequency-of-collection', ['frequency-of-collection']),
+            ('frequency-of-collection-units', ['frequency-of-collection-units']),
+            ('parameters-measured', ['dimension', 'type']),
+            ('sensor-type', ['dimension', 'name']),
+
+        ]:
             package_dict['extras'].append(
-                {'key': 'data-format', 'value': data_format[0]['name']},
+                {'key': key, 'value': _get_value(custom_iso_values, custom_iso_keys)}
             )
 
+        # Flatten some fields returned as lists
+        for key in ('use-constraints', 'begin-collection_date', 'end-collection_date'):
+            for extra in package_dict['extras']:
+                if extra['key'] == key and len(extra['value']):
+                    extra['value'] = extra['value'][0]
 
         # Default all resource formats to HTML if no format yet defined
         # We might needed to expanded this some point
         for resource in package_dict.get('resources', []):
             if not resource.get('format'):
                 resource['format'] = 'HTML'
-
 
         return package_dict
 
