@@ -1,10 +1,29 @@
 import json
+import logging
+import re
 import ckan.plugins as p
 
 from ckanext.spatial.interfaces import ISpatialHarvester
 
 from ckanext.tsbsatellites.iso import CustomISODocument
 import ckanext.tsbsatellites.helpers as satellites_helpers
+
+
+log = logging.getLogger(__name__)
+
+def _sanitize_org_name(name):
+
+    # Convert spaces and separators to hyphens
+    name = re.sub('[ .:/]', '-', name.strip())
+
+    # Remove non-allowed characters and lower-case
+    name = re.sub('[^a-zA-Z0-9-_]', '', name).lower()
+
+    # Pad with extra characters if too small
+    if len(name) < 3:
+        name += '_' * (3 - len(name))
+
+    return name
 
 class TSBSatellitesPlugin(p.SingletonPlugin):
 
@@ -13,6 +32,9 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
     p.implements(p.ITemplateHelpers)
     p.implements(p.IConfigurer)
     p.implements(p.IPackageController, inherit=True)
+
+
+    _site_user = None
 
     # IConfigurer
 
@@ -109,6 +131,46 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
         for resource in package_dict.get('resources', []):
             if not resource.get('format'):
                 resource['format'] = 'HTML'
+
+        # Extract organizations from the ResponsibleParty ISO values, check if
+        # it exists and create it otherwise
+        responsible_party = iso_values.get('responsible-organisation', [{}])[0]
+        responsible_party_name = responsible_party.get('organisation-name',
+                                    responsible_party.get('individual-name'))
+        if not responsible_party_name:
+            log.error('No organization defined for dataset {0}'.format(package_dict['name']))
+        else:
+            org_name = _sanitize_org_name(responsible_party_name)
+            try:
+                org_dict = p.toolkit.get_action('organization_show')({}, {'id': org_name})
+                package_dict['owner_org'] = org_dict['id']
+                log.debug('Organization exists, assigning dataset {0} to org {1}'.format(
+                          package_dict['name'], org_dict['name']))
+
+            except p.toolkit.ObjectNotFound:
+
+                contact_info = responsible_party.get('contact-info', {})
+                org_url = contact_info.get('online-resource').get('url') if contact_info.get('online-resource') else None
+
+                if not self._site_user:
+                    self._site_user = p.toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
+                new_context = {
+                    'ignore_auth': True,
+                    'user': self._site_user['name'],
+                }
+                data_dict = {
+                    'name': org_name,
+                    'title': responsible_party_name,
+                    'extras': [
+                        {'key': 'url', 'value': org_url},
+                        {'key': 'email', 'value': contact_info.get('email')},
+                    ]
+                }
+
+                org_dict = p.toolkit.get_action('organization_create')(new_context, data_dict)
+                package_dict['owner_org'] = org_dict['id']
+                log.debug('New organization created, assigning dataset {0} to org {1}'.format(
+                          package_dict['name'], org_dict['name']))
 
         return package_dict
 
