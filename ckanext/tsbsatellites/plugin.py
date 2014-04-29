@@ -1,3 +1,4 @@
+import json
 import ckan.plugins as p
 
 from ckanext.spatial.interfaces import ISpatialHarvester
@@ -11,6 +12,7 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
     p.implements(p.IFacets)
     p.implements(p.ITemplateHelpers)
     p.implements(p.IConfigurer)
+    p.implements(p.IPackageController, inherit=True)
 
     # IConfigurer
 
@@ -19,6 +21,12 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
         p.toolkit.add_template_directory(config, 'theme/templates')
         p.toolkit.add_public_directory(config, 'theme/public')
         p.toolkit.add_resource('theme/resources', 'satellites-theme')
+
+    # IPackageController
+
+    def before_index(self, data_dict):
+        data_dict['topic-category'] = json.loads(data_dict.get('topic-category', '[]'))
+        return data_dict
 
     # ISpatialHarvester
 
@@ -84,11 +92,17 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
                 {'key': key, 'value': _get_value(custom_iso_values, custom_iso_keys)}
             )
 
-        # Flatten some fields returned as lists
+        # Flatten some single-value fields returned as lists
         for key in ('use-constraints', 'begin-collection_date', 'end-collection_date'):
             for extra in package_dict['extras']:
                 if extra['key'] == key and len(extra['value']):
                     extra['value'] = extra['value'][0]
+
+        # Dump some fields returned as lists as JSON
+        for key in ('topic-category',):
+            for extra in package_dict['extras']:
+                if extra['key'] == key:
+                    extra['value'] = json.dumps(extra['value'])
 
         # Default all resource formats to HTML if no format yet defined
         # We might needed to expanded this some point
