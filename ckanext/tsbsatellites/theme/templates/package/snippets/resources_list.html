@@ -1,0 +1,18 @@
+{% ckan_extends %}
+
+{% block resource_list %}
+  {{ super () }}
+  
+    <ul class="resource-list">
+      <li class="resource-item">
+        <strong class="heading">
+          <span class="format-label" property="dc:format" data-format="ISO-19139">ISO-19139</span>
+          ISO-19139 Metadata
+        </strong>
+        <p class="description">
+          <a href="/harvest/object/{{ h.get_pkg_dict_extra(pkg, 'harvest_object_id') }}">Download Metadata</a>
+        </p>
+      </li>
+     </ul>
+
+{% endblock %}
