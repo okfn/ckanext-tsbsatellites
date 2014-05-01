@@ -106,3 +106,32 @@ To add metadata you must be logged in to the GeoNetwork instance. Click on
     .. image:: http://i.imgur.com/mx8dQJu.png?1
 
   - When finished, click on `Save` or `Save and Close`.
+
+
+
+Accessing the machines
+======================
+
+Add the following to your .ssh/config
+
+  Host s* !s*.okserver.org
+      Hostname %h.okserver.org
+      User <your username>
+  Host tsb-web-staging
+      Hostname 185.30.10.28
+      User <your username>
+      ProxyCommand ssh s084 netcat -w 120 %h %p
+  Host tsb-db-staging
+      Hostname 172.16.0.15
+      User <your username>
+      ProxyCommand ssh tsb-web-staging netcat -w 120 %h %p
+  Host tsb-web-prod
+      Hostname 172.16.0.14
+      User <your username>
+      ProxyCommand ssh tsb-web-staging netcat -w 120 %h %p
+  Host tsb-db-prod
+      Hostname 172.16.0.13
+      User <your username>
+      ProxyCommand ssh tsb-web-staging netcat -w 120 %h %p
+
+Now `ssh tsb-web-staging` to access the machines.
