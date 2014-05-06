@@ -1,5 +1,5 @@
 $.widget( "custom.catcomplete", $.ui.autocomplete, {
-  renderMenu: function( ul, items ) {
+  _renderMenu: function( ul, items ) {
     var that = this,
     currentCategory = "";
     $.each( items, function( index, item ) {
@@ -9,8 +9,8 @@ $.widget( "custom.catcomplete", $.ui.autocomplete, {
       }
       that._renderItemData( ul, item );
     });
-  }
-});
+   }
+ });
 
 $(function() {
   var data = [
