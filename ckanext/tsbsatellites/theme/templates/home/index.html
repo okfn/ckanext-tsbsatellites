@@ -25,7 +25,7 @@
         <form class="module-content search-form" method="get" action="{% url_for controller='package', action='search' %}">
           <h3 class="heading">{{ _("Search by keyword") }}</h3>
           <div class="search-input control-group search-giant">
-            <input type="text" class="search" name="q" value="" autocomplete="off" placeholder="{{ _('Search by keyword') }}" />
+            <input id="search" type="text" class="search" name="q" value="" autocomplete="off" placeholder="{{ _('Search by keyword') }}" />
             <button type="submit">
               <i class="icon-search"></i>
               <span>{{ _('Search') }}</span>
@@ -46,4 +46,6 @@
       </section>
     </div>
   </div>
+  {% resource 'satellites-theme/jqueryui' %}
+  {% resource 'satellites-theme/jqueryui/css/ui-lightness/jquery-ui.css' %}
 {% endblock %}
