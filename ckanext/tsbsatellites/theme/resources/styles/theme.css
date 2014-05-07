@@ -696,3 +696,9 @@ ul.category-grid li:nth-child(8n+8) a {
 .media-view.hovered .banner {
   background-color: #000000;
 }
+.ui-autocomplete-category {
+ font-weight: bold;
+ padding: .2em .4em;
+ margin: .8em 0 .2em;
+ line-height: 1.5;
+}
