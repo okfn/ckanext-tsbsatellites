@@ -7,7 +7,7 @@ from ckanext.spatial.interfaces import ISpatialHarvester
 
 from ckanext.tsbsatellites.iso import CustomISODocument
 import ckanext.tsbsatellites.helpers as satellites_helpers
-
+import ckanext.tsbsatellites.controllers as controllers
 
 log = logging.getLogger(__name__)
 
@@ -32,6 +32,7 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
     p.implements(p.ITemplateHelpers)
     p.implements(p.IConfigurer)
     p.implements(p.IPackageController, inherit=True)
+    p.implements(p.IRoutes, inherit=True)
 
 
     _site_user = None
@@ -206,6 +207,16 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
             'get_categories',
         )
         return _get_module_functions(satellites_helpers, function_names)
+
+    #IRoutes
+    def before_map(self, map):
+        map.connect('autcomplete_search', '/api/util/search',
+            controller='ckanext.tsbsatellites.controllers:SearchAutocomplete',
+            action='autocomplete')
+        return map
+
+    def after_map(self, map):
+        return map
 
 def _get_module_functions(module, function_names):
     functions = {}
