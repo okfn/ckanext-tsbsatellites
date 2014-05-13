@@ -15,8 +15,10 @@ class SearchAutocomplete(tk.BaseController):
         data.extend(search_dict)
         if tk.c.user:
             history = tk.get_action('search_history_list')(context, {})
-            history_list = map(lambda x: {'label': x['params']['q'],
-                               'category': 'history'}, history)
+            history_list = [{'label': x['params']['q'], 'category': 'history'}
+                            for x in history]
+            history_list = filter(lambda x: term.lower() in x['label'].lower(),
+                                  history_list)
             data.extend(history_list)
         tk.response.headers['Content-Type'] = 'application/json;charset=utf-8'
         return json.dumps(data)
