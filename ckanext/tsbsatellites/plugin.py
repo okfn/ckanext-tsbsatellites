@@ -116,7 +116,8 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
             )
 
         # Flatten some single-value fields returned as lists
-        for key in ('use-constraints', 'begin-collection_date', 'end-collection_date'):
+        for key in ('use-constraints', 'begin-collection_date',
+                'end-collection_date', 'alternate-title'):
             for extra in package_dict['extras']:
                 if extra['key'] == key and len(extra['value']):
                     extra['value'] = extra['value'][0]
