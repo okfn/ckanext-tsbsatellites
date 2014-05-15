@@ -48,7 +48,17 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
     # IPackageController
 
     def before_index(self, data_dict):
+
         data_dict['topic-category'] = json.loads(data_dict.get('topic-category', '[]'))
+
+        # Do not index the collection date fields if the date is null
+        # This should be fixed in core in ckan/ckan#1701
+        package_dict = json.loads(data_dict['data_dict'])
+        for field in ('begin-collection_date', 'end-collection_date',):
+            for extra in package_dict.get('extras', []):
+                if extra['key'] == field and not extra['value']:
+                    data_dict.pop(field, None)
+
         return data_dict
 
     # ISpatialHarvester
