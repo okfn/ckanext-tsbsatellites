@@ -57,6 +57,7 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
 
         package_dict = data_dict['package_dict']
         iso_values = data_dict['iso_values']
+        xml_tree = data_dict['xml_tree']
 
         def _get_value(d, keys):
             key = keys.pop(0)
@@ -101,8 +102,7 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
         # Fields which are not extracted by the default ISO parser
         # (ie not in iso_values), reparse the ISO doc to extract
         # them
-        xml_string = data_dict['harvest_object'].content
-        custom_iso_values = CustomISODocument(xml_string).read_values()
+        custom_iso_values = CustomISODocument(xml_tree=xml_tree).read_values()
 
         for key, custom_iso_keys in [
             ('frequency-of-collection', ['frequency-of-collection']),
