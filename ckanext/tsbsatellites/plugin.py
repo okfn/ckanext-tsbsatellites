@@ -7,7 +7,6 @@ from ckanext.spatial.interfaces import ISpatialHarvester
 
 from ckanext.tsbsatellites.iso import CustomISODocument
 import ckanext.tsbsatellites.helpers as satellites_helpers
-import ckanext.tsbsatellites.controllers as controllers
 
 log = logging.getLogger(__name__)
 
@@ -50,6 +49,13 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
     def before_index(self, data_dict):
 
         data_dict['topic-category'] = json.loads(data_dict.get('topic-category', '[]'))
+
+        # Format facets
+        data_dict['topic-category_facets'] = []
+        for category in data_dict['topic-category']:
+            for category_def in satellites_helpers.CATEGORIES:
+                if category_def['name'] == category:
+                    data_dict['topic-category_facets'].append(category_def['title'])
 
         # Do not index the collection date fields if the date is null
         # This should be fixed in core in ckan/ckan#1701
@@ -186,7 +192,7 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
         # We will actually remove all the core facets and add our own
         facets_dict.clear()
 
-        facets_dict['topic-category'] = p.toolkit._('Topic Category')
+        facets_dict['topic-category_facets'] = p.toolkit._('Topic Category')
         facets_dict['data-format'] = p.toolkit._('Data Format')
         facets_dict['use-constraints'] = p.toolkit._('Data Cost and Access')
 

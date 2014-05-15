@@ -150,6 +150,7 @@
 
     <!-- Make topic-category multivalued so we can have multiple facet values -->
     <field name="topic-category" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="topic-category_facets" type="string" indexed="true" stored="true" multiValued="true"/>
 
 </fields>
 
