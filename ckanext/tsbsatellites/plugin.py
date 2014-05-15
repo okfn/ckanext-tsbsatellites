@@ -1,10 +1,11 @@
 import json
 import logging
 import re
+from routes.mapper import SubMapper
+
 import ckan.plugins as p
 
 from ckanext.spatial.interfaces import ISpatialHarvester
-
 from ckanext.tsbsatellites.iso import CustomISODocument
 import ckanext.tsbsatellites.helpers as satellites_helpers
 
@@ -35,6 +36,7 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
 
 
     _site_user = None
+
 
     # IConfigurer
 
@@ -212,6 +214,7 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
         return facets_dict
 
     # ITemplateHelpers
+
     def get_helpers(self):
 
         function_names = (
@@ -220,14 +223,69 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
         return _get_module_functions(satellites_helpers, function_names)
 
     #IRoutes
+
     def before_map(self, map):
+
         map.connect('autcomplete_search', '/api/util/search',
             controller='ckanext.tsbsatellites.controllers:SearchAutocomplete',
             action='autocomplete')
+
+        # Use publishers instead of orgs in the URLs
+
+        map.redirect('/group/{url:.*}', '/publisher/{url}',
+                     _redirect_code='301 Moved Permanently')
+        map.redirect('/group', '/publisher',
+                     _redirect_code='301 Moved Permanently')
+        map.redirect('/organization/{url:.*}', '/publisher/{url}',
+                     _redirect_code='301 Moved Permanently')
+        map.redirect('/organization', '/publisher',
+                     _redirect_code='301 Moved Permanently')
+
+        map.redirect('/publishers', '/publisher')
+        map.redirect('/publishers/{url:.*}', '/publisher/{url}')
+
+        org_controller = 'ckan.controllers.organization:OrganizationController'
+        with SubMapper(map, controller=org_controller) as m:
+            m.connect('publishers_index', '/publisher', action='index')
+            m.connect('/publisher/list', action='list')
+            m.connect('/publisher/new', action='new')
+            m.connect('/publisher/{action}/{id}',
+                      requirements=dict(action='|'.join([
+                          'delete',
+                          'admins',
+                          'member_new',
+                          'member_delete',
+                          'history'
+                      ])))
+            m.connect('publisher_activity', '/publisher/activity/{id}',
+                      action='activity', ckan_icon='time')
+            m.connect('publisher_read', '/publisher/{id}', action='read')
+            m.connect('publisher_about', '/publisher/about/{id}',
+                      action='about', ckan_icon='info-sign')
+            m.connect('publisher_read', '/publisher/{id}', action='read',
+                      ckan_icon='sitemap')
+            m.connect('publisher_edit', '/publisher/edit/{id}',
+                      action='edit', ckan_icon='edit')
+            m.connect('publisher_members', '/publisher/edit_members/{id}',
+                      action='members', ckan_icon='group')
+            m.connect('publisher_bulk_process',
+                      '/publisher/bulk_process/{id}',
+                      action='bulk_process', ckan_icon='sitemap')
+
+        map.redirect('/api/{ver:1|2|3}/rest/publisher',
+                     '/api/{ver}/rest/group')
+        map.redirect('/api/rest/publisher', '/api/rest/group')
+        map.redirect('/api/{ver:1|2|3}/rest/publisher/{url:.*}',
+                     '/api/{ver}/rest/group/{url:.*}')
+        map.redirect('/api/rest/publisher/{url:.*}',
+                     '/api/rest/group/{url:.*}')
+
+        map.connect('publisher_members_read', '/publisher/members/{id}',
+            controller='ckanext.iati.controllers.publisher:PublisherController',
+            action='members_read', ckan_icon='group')
+
         return map
 
-    def after_map(self, map):
-        return map
 
 def _get_module_functions(module, function_names):
     functions = {}
