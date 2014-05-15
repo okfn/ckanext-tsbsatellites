@@ -153,12 +153,6 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
                 contact_info = responsible_party.get('contact-info', {})
                 org_url = contact_info.get('online-resource').get('url') if contact_info.get('online-resource') else None
 
-                if not self._site_user:
-                    self._site_user = p.toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
-                new_context = {
-                    'ignore_auth': True,
-                    'user': self._site_user['name'],
-                }
                 data_dict = {
                     'name': org_name,
                     'title': responsible_party_name,
@@ -168,7 +162,7 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
                     ]
                 }
 
-                org_dict = p.toolkit.get_action('organization_create')(new_context, data_dict)
+                org_dict = p.toolkit.get_action('organization_create')(context, data_dict)
                 package_dict['owner_org'] = org_dict['id']
                 log.debug('New organization created, assigning dataset {0} to org {1}'.format(
                           package_dict['name'], org_dict['name']))
