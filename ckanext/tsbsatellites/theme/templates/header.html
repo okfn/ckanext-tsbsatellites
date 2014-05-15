@@ -44,3 +44,12 @@
     <li>{% link_for _('Register'), controller='user', action='register', class_='sub' %}</li>
   {% endif %}
 {% endblock %}
+
+{% block header_site_navigation_tabs %}
+  {{ h.build_nav_main(
+    ('search', _('Datasets')),
+    ('organizations_index', _('Publishers')),
+    ('about', _('About'))
+) }}
+{% endblock %}
+
