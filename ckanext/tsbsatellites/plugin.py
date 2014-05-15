@@ -191,7 +191,7 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
         facets_dict['use-constraints'] = p.toolkit._('Data Cost and Access')
 
         #TODO: handle these as number / date
-        facets_dict['spatial-resolution'] = p.toolkit._('Spatial Resolution')
+        facets_dict['spatial-resolution'] = p.toolkit._('Spatial Resolution (meters)')
 
         facets_dict['begin-collection_date'] = p.toolkit._('Date of Collection')
 
