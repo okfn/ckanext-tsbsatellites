@@ -82,7 +82,7 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
             ('topic-category', ['topic-category']),
             ('spatial-resolution', ['spatial-resolution']),
             ('use-constraints', ['limitations-on-public-access']),
-            ('alternative-title', ['alternative-title']),
+            ('alternate-title', ['alternate-title']),
             ('purpose', ['purpose']),
             ('lineage', ['lineage']),
             ('additional-information-source', ['additional-information-source']),
