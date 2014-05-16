@@ -21,6 +21,9 @@ CATEGORIES = [
     {'name': 'structure', 'title': 'Structure', 'short_title': 'Structure'},
     {'name': 'transportation', 'title': 'Transportation', 'short_title': 'Transportation'},
     {'name': 'utilitiesCommunication', 'title': 'Utilities / Communication', 'short_title': 'Utilities'},
+
+    # Custom values, not part of the original vocabulary
+    {'name': 'Copernicus', 'title': 'Copernicus', 'short_title': 'Copernicus'},
 ]
 
 

@@ -117,6 +117,17 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
                 {'key': key, 'value': _get_value(iso_values, iso_keys)}
             )
 
+        # Add extra elements to Topic Category that are not part of the
+        # vocabulary (eg a tag)
+        tags_to_include = ['Copernicus']
+        tags_present = []
+        for tag in package_dict.get('tags', []):
+            if tag['name'] in tags_to_include:
+                tags_present.append(tag['name'])
+        for extra in package_dict['extras']:
+            if extra['key'] == 'topic-category':
+                extra['value'].extend(tags_present)
+
         # Fields which are not extracted by the default ISO parser
         # (ie not in iso_values), reparse the ISO doc to extract
         # them
