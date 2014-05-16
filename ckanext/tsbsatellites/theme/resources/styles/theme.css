@@ -700,3 +700,28 @@ ul.category-grid li:nth-child(8n+8) a {
 .media-view.hovered .banner {
   background-color: #000000;
 }
+/* Footer */
+.site-footer {
+  margin-top: 50px;
+}
+.footer-links,
+.attribution {
+  width: auto;
+}
+.site-footer ul {
+  width: auto;
+  margin-right: 100px;
+  line-height: 20px;
+}
+.site-footer li {
+  margin-bottom: 10px;
+}
+.ckan-footer-logo {
+  display: block;
+  width: 90px;
+  height: 30px;
+  margin-top: 2px;
+  background: url("../../../base/images/ckan-logo-footer.png") no-repeat top left;
+  text-indent: -900em;
+  background: url("/images/ckan-logo-footer.png") no-repeat top left;
+}
