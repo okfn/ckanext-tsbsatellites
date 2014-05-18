@@ -387,12 +387,25 @@ body > footer {
   small {
     color: @text-colour;
   }
-  .attribution .ckan-footer-logo {
-    height: 22px;
-    background-size:68px auto;
+  .attribution {
+    float:right;
+    img {
+      width:158px;
+      .ckan-footer-logo {
+        height: 22px;
+        background-size:68px auto;
+      }
+    }
+  }
+  .footer-links {
+    width:750px;
+    ul:nth-child(2) {
+      float:right;
+      margin-right:0;
+    }
   }
 }
-
+  
 
 /* Home */
 .homepage {

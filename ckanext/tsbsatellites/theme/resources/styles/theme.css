@@ -435,9 +435,22 @@ body > footer {
 .site-footer small {
   color: #000000;
 }
-.site-footer .attribution .ckan-footer-logo {
+.site-footer .attribution {
+  float: right;
+}
+.site-footer .attribution img {
+  width: 158px;
+}
+.site-footer .attribution img .ckan-footer-logo {
   height: 22px;
   background-size: 68px auto;
+}
+.site-footer .footer-links {
+  width: 750px;
+}
+.site-footer .footer-links ul:nth-child(2) {
+  float: right;
+  margin-right: 0;
 }
 /* Home */
 .homepage header {
