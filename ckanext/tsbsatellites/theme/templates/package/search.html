@@ -3,7 +3,11 @@
 {% block secondary_content %}
 
   {% snippet "spatial/snippets/spatial_query.html" %}
-
-  {{ super() }}
+  {% snippet "snippets/date_facet_slider.html" %}
+  {% for facet in c.facet_titles %}
+    {% if facet != 'begin-collection_date' %}
+      {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
+    {% endif %}
+  {% endfor %}
 
 {% endblock %}
