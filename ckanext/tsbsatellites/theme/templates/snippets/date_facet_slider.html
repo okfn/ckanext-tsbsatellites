@@ -1,0 +1,13 @@
+{#
+Displays a slider widget to define a date filter on the dataset search page sidebar
+#}
+<section id="dataset-slider" class="module module-narrow module-shallow">
+  <h2 class="module-heading">
+    {{ _('Date of Collection') }}
+    <a href="{{ h.remove_url_param(['begin-collection_date']) }}" class="action">{{ _('Clear') }}</a>
+  </h2>
+  <div id="dataset-slider-widget">
+  </div>
+</section>
+{% resource 'satellites-theme/slider' %}
+{% resource 'satellites-theme/jquery-range-slider/css/classic-min.css' %}
