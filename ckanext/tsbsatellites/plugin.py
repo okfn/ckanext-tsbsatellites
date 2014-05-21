@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 import logging
 import re
@@ -68,6 +69,36 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
                     data_dict.pop(field, None)
 
         return data_dict
+
+    def before_search(self, search_params):
+
+        def parse_date(date_string):
+            '''
+            Parse a date string or throw a nice error into the log. Re-raises
+            the error for the plugin to catch.
+            '''
+            try:
+                return datetime.strptime(date_string, '%Y-%m-%d')
+            except ValueError as e:
+                log.debug('Date {0} not in the right format. Needs to be YYYY'
+                          '-MM-DD'.format(date_string))
+                raise e
+
+        if (search_params.get('extras', None) and 'ext_begin_date' in
+                search_params['extras'] and 'ext_end_date' in
+                search_params['extras']):
+            try:
+                begin = parse_date(search_params['extras']['ext_begin_date'])
+                end = parse_date(search_params['extras']['ext_end_date'])
+            except ValueError:
+                return search_params
+            # Adding 'Z' manually here is evil, but we do this in core too.
+            query = ("begin-collection_date:[{0}Z TO {1}Z] AND "
+                    "end-collection_date:[{0}Z TO {1}Z]")
+            query = query.format(begin.isoformat(), end.isoformat())
+            search_params['q'] = query
+
+        return search_params
 
     # ISpatialHarvester
 
