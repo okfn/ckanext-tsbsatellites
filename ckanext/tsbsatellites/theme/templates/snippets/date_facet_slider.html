@@ -1,7 +1,8 @@
 {#
 Displays a slider widget to define a date filter on the dataset search page sidebar
 #}
-<section id="dataset-slider" class="module module-narrow module-shallow">
+{% set default_dates = h.get_default_slider_values() %}
+<section id="dataset-slider" class="module module-narrow module-shallow" data-begin="{{ default_dates[0] }}" data-end="{{ default_dates[1] }}">
   <h2 class="module-heading">
     {{ _('Date of Collection') }}
     <a href="{{ h.remove_url_param(['begin-collection_date']) }}" class="action">{{ _('Clear') }}</a>

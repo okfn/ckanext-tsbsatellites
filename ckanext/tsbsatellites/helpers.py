@@ -1,5 +1,5 @@
 import ckan.plugins as p
-
+from datetime import date
 
 CATEGORIES = [
     {'name': 'biota', 'title': 'Biota', 'short_title': 'Biota'},
@@ -67,3 +67,33 @@ def get_categories():
                              else 0)
 
     return all_categories
+
+def get_default_slider_values():
+    '''Returns the earliest collection date from package_search'''
+
+    data_dict = {
+            'sort': 'begin-collection_date asc',
+            'rows': 1,
+            'q': 'begin-collection_date:[* TO *]',
+    }
+    result = p.toolkit.get_action('package_search')({}, data_dict)['results']
+    if len(result) == 1:
+        date = filter(lambda x: x['key'] == 'begin-collection_date',
+                result[0].get('extras', []))
+        begin = date[0]['value']
+    else:
+        begin = date.today().isoformat()
+
+    data_dict = {
+            'sort': 'end-collection_date desc',
+            'rows': 1,
+            'q': 'end-collection_date:[* TO *]',
+    }
+    result = p.toolkit.get_action('package_search')({}, data_dict)['results']
+    if len(result) == 1:
+        date = filter(lambda x: x['key'] == 'end-collection_date',
+                result[0].get('extras', []))
+        end = date[0]['value']
+    else:
+        begin = date.today().isoformat()
+    return begin, end

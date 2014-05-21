@@ -9,6 +9,7 @@ $(function() {
       return uri + separator + key + "=" + value;
     }
   }
+
   function convertDate(date) {
     day = date.getDate();
     month = date.getMonth();
@@ -16,11 +17,20 @@ $(function() {
     return year + '-' + month + '-' + day
   }
 
+  function getDate(attr) {
+    var date_string = $( "#dataset-slider" ).attr("data-" + attr);
+    return new Date(date_string.split('-'));
+  }
+
   $( "#dataset-slider-widget" ).dateRangeSlider({
     valueLabels:"change",
-    delayOut: 4000
+    delayOut: 4000,
+    defaultValues: {
+      min: getDate('begin'),
+      max: getDate('end')
+    }
   })
-  .on("valuesChanged", function(e, data){
+  .on("userValuesChanged", function(e, data){
     var current_url = document.URL;
     current_url = updateQueryStringParameter(current_url, 'ext_begin_date', convertDate(data.values.min));
     current_url = updateQueryStringParameter(current_url, 'ext_end_date', convertDate(data.values.max));

@@ -261,6 +261,7 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
 
         function_names = (
             'get_categories',
+            'get_default_slider_values',
         )
         return _get_module_functions(satellites_helpers, function_names)
 
