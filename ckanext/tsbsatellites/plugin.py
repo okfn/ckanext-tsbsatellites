@@ -167,8 +167,8 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
         for key, custom_iso_keys in [
             ('frequency-of-collection', ['frequency-of-collection']),
             ('frequency-of-collection-units', ['frequency-of-collection-units']),
-            ('parameters-measured', ['dimension', 'type']),
-            ('sensor-type', ['dimension', 'name']),
+            ('parameters-measured', ['dimension', 'name']),
+            ('sensor-type', ['dimension', 'type']),
 
         ]:
             package_dict['extras'].append(
