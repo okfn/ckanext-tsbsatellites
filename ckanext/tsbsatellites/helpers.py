@@ -1,5 +1,8 @@
+import ckan.lib.helpers as h
 import ckan.plugins as p
-from datetime import date
+import datetime
+import json
+import re
 
 CATEGORIES = [
     {'name': 'biota', 'title': 'Biota', 'short_title': 'Biota'},
@@ -82,7 +85,7 @@ def get_default_slider_values():
                 result[0].get('extras', []))
         begin = date[0]['value']
     else:
-        begin = date.today().isoformat()
+        begin = datetime.date.today().isoformat()
 
     data_dict = {
             'sort': 'end-collection_date desc',
@@ -95,5 +98,40 @@ def get_default_slider_values():
                 result[0].get('extras', []))
         end = date[0]['value']
     else:
-        begin = date.today().isoformat()
+        end = datetime.date.today().isoformat()
     return begin, end
+
+def format_data_costs(package):
+    data = h.get_pkg_dict_extra(package, 'access_constraints')
+    data_list = json.loads(data)
+    return ', '.join(data_list)
+
+def format_frequency(package):
+    freq = h.get_pkg_dict_extra(package, 'frequency-of-collection')
+    unit = h.get_pkg_dict_extra(package, 'frequency-of-collection-units')
+    # Remove the surrounding curly braces from both the strings
+    freq_num = run_format_regex(freq)
+    freq_float = None
+    try:
+        freq_int = int(freq_num)
+    except ValueError:
+        freq_float = float(freq_num)
+    # Most values are ints, but some are floats and some of these floats are
+    # just the same number as the int. This complicated and ugly logic makes
+    # sure floats are used *only* when needed.
+    if freq_float is not None:
+        if freq_float == int(freq_float):
+            freq_num = int(freq_float)
+        else:
+            freq_num = freq_float
+    else:
+        freq_num = freq_int
+    unit_str = run_format_regex(unit)
+    if freq_num > 0:
+        unit_str = '{0}s'.format(unit_str)
+    return '{0} {1}'.format(freq_num, unit_str)
+
+
+def run_format_regex(string):
+    r = re.compile('{(.*)}')
+    return r.match(string).group(1)

@@ -23,6 +23,15 @@
         <div>{{ notes|urlize }}</div>
       {% endif %}
     </div>
+    {% if h.get_pkg_dict_extra(package, 'spatial-resolution') != None %}
+    <p>Spatial Resolution (metres): {{ h.get_pkg_dict_extra(package, 'spatial-resolution') }} </p>
+    {% endif %}
+    {% if h.get_pkg_dict_extra(package, 'frequency-of-collection') %}
+    <p>Frequency of Collection: {{ h.format_frequency(package) }} </p>
+    {% endif %}
+    {% if h.get_pkg_dict_extra(package, 'access_constraints')  %}
+    <p>Data Cost and Access: {{ h.format_data_costs(package) }}</p>
+    {% endif %}
     {% if package.resources and not hide_resources %}
       <ul class="dataset-resources unstyled">
         {% for resource in h.dict_list_reduce(package.resources, 'format') %}
@@ -31,5 +40,5 @@
           </li>
         {% endfor %}
       </ul>
-    {% endif %}
+      {% endif %}
   {% endblock %}
