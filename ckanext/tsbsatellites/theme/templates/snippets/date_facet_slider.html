@@ -4,7 +4,7 @@ Displays a slider widget to define a date filter on the dataset search page side
 {% set date_range = h.get_default_slider_values() %}
 {% set default_dates = h.get_date_url_param() %}
 <section id="dataset-slider" class="module module-narrow module-shallow" data-begin="{{ date_range[0] }}"
-data-end="{{ date_range[1] }}" data-default-begin="{{ default_dates[0] }} "
+data-end="{{ date_range[1] }}" data-default-begin="{{ default_dates[0] }}"
 data-default-end="{{ default_dates[1] }}">
   <h2 class="module-heading">
     {{ _('Date of Collection') }}

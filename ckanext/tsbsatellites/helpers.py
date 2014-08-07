@@ -137,7 +137,7 @@ def run_format_regex(string):
     return r.match(string).group(1)
 
 def get_date_url_param():
-    params = [None, None]
+    params = ['', '']
     for k, v in tk.request.params.items():
         if k == 'ext_begin_date':
             params[0] = v

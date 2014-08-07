@@ -19,25 +19,42 @@ $(function() {
 
   function getDate(attr) {
     var date_string = $( "#dataset-slider" ).attr("data-" + attr);
-    return new Date(date_string.split('-'));
+    if (0 !== date_string.length) {
+      return new Date(date_string.split('-'));
+    }
+    return ''
   }
+  function init_slider() {
+    var slider_options = {
+      valueLabels:"change",
+      delayOut: 4000,
+      bounds: {
+        min: getDate('begin'),
+        max: getDate('end')
+      }
+    };
+    var min = getDate('default-begin');
+    var max = getDate('default-end');
+    if ('' !== min && '' !== max) {
+      slider_options['defaultValues'] = {
+        min: min,
+        max: max
+      };
+    } else {
+      slider_options['defaultValues'] = {
+        min: getDate('begin'),
+        max: getDate('end')
+      };
+    }
+    console.log(slider_options);
+    $( "#dataset-slider-widget" ).dateRangeSlider(slider_options)
+    .on("userValuesChanged", function(e, data){
+      $('#ext_begin_date').val(convertDate(data.values.min));
+      $('#ext_end_date').val(convertDate(data.values.max));
+    });
+  }
+  init_slider();
 
-  $( "#dataset-slider-widget" ).dateRangeSlider({
-    valueLabels:"change",
-    delayOut: 4000,
-    defaultValues: {
-      min: getDate('default-begin'),
-      max: getDate('default-end')
-    },
-    bounds:{
-      min: getDate('begin'),
-      max: getDate('end')
-   }
-  })
-  .on("userValuesChanged", function(e, data){
-    $('#ext_begin_date').val(convertDate(data.values.min));
-    $('#ext_end_date').val(convertDate(data.values.max));
-  });
 
   $("#ext_date_submit").on("click", function() {
     var current_url = document.URL;
