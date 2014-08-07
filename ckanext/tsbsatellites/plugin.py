@@ -264,6 +264,7 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
             'get_default_slider_values',
             'format_data_costs',
             'format_frequency',
+            'get_date_url_param',
         )
         return _get_module_functions(satellites_helpers, function_names)
 

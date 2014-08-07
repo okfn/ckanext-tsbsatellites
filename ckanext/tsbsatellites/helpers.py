@@ -1,5 +1,6 @@
 import ckan.lib.helpers as h
 import ckan.plugins as p
+import ckan.plugins.toolkit as tk
 import datetime
 import json
 import re
@@ -131,7 +132,17 @@ def format_frequency(package):
         unit_str = '{0}s'.format(unit_str)
     return '{0} {1}'.format(freq_num, unit_str)
 
-
 def run_format_regex(string):
     r = re.compile('{(.*)}')
     return r.match(string).group(1)
+
+def get_date_url_param():
+    params = [None, None]
+    for k, v in tk.request.params.items():
+        if k == 'ext_begin_date':
+            params[0] = v
+        elif k == 'ext_end_date':
+            params[1] = v
+        else:
+            continue
+    return params

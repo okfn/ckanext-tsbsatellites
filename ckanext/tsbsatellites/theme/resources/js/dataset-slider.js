@@ -26,14 +26,26 @@ $(function() {
     valueLabels:"change",
     delayOut: 4000,
     defaultValues: {
+      min: getDate('default-begin'),
+      max: getDate('default-end')
+    },
+    bounds:{
       min: getDate('begin'),
       max: getDate('end')
-    }
+   }
   })
   .on("userValuesChanged", function(e, data){
+    $('#ext_begin_date').val(convertDate(data.values.min));
+    $('#ext_end_date').val(convertDate(data.values.max));
+  });
+
+  $("#ext_date_submit").on("click", function() {
     var current_url = document.URL;
-    current_url = updateQueryStringParameter(current_url, 'ext_begin_date', convertDate(data.values.min));
-    current_url = updateQueryStringParameter(current_url, 'ext_end_date', convertDate(data.values.max));
+    current_url = updateQueryStringParameter(current_url, 'ext_begin_date', $('#ext_begin_date').val());
+    current_url = updateQueryStringParameter(current_url, 'ext_end_date', $('#ext_end_date').val());
     window.location = current_url;
   });
+
+  $( "#ext_begin_date" ).datepicker();
+  $( "#ext_end_date" ).datepicker();
 });

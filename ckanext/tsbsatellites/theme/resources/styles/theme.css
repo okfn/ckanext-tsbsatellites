@@ -20,7 +20,6 @@
   text-transform: none;
   line-height: 1;
   /* Better Font Rendering =========== */
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -106,12 +105,10 @@ input[type="color"]:focus,
 }
 :-moz-placeholder {
   /* Firefox 18- */
-
   font-style: italic;
 }
 ::-moz-placeholder {
   /* Firefox 19+ */
-
   font-style: italic;
 }
 :-ms-input-placeholder {
@@ -187,7 +184,6 @@ a:focus {
 html {
   font-size: 62.5%;
   /* Sets up the Base 10 */
-
 }
 body {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -737,4 +733,7 @@ ul.category-grid li:nth-child(8n+8) a {
   background: url("../../../base/images/ckan-logo-footer.png") no-repeat top left;
   text-indent: -900em;
   background: url("/images/ckan-logo-footer.png") no-repeat top left;
+}
+#dataset-slider-widget {
+  margin: 10px 0;
 }
