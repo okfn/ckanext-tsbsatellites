@@ -146,3 +146,11 @@ def get_date_url_param():
         else:
             continue
     return params
+
+def remove_public(item):
+    '''
+    Function to remove "Public - " from the labels for search facet.
+    '''
+    if item['display_name'].startswith('Public - '):
+         item['display_name'] = item['display_name'][9:]
+    return h.truncate(item['display_name'], 22)

@@ -5,7 +5,9 @@
   {% snippet "spatial/snippets/spatial_query.html" %}
   {% snippet "snippets/date_facet_slider.html" %}
   {% for facet in c.facet_titles %}
-    {% if facet != 'begin-collection_date' %}
+    {% if facet == 'use-constraints' %}
+      {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet, label_function=h.remove_public) }}
+    {% elif facet != 'begin-collection_date' %}
       {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
     {% endif %}
   {% endfor %}

@@ -265,6 +265,7 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
             'format_data_costs',
             'format_frequency',
             'get_date_url_param',
+            'remove_public',
         )
         return _get_module_functions(satellites_helpers, function_names)
 
