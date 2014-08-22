@@ -23,6 +23,7 @@
         <div>{{ notes|urlize }}</div>
       {% endif %}
     </div>
+    <br />
     {% if h.get_pkg_dict_extra(package, 'spatial-resolution') != None %}
     <p>Spatial Resolution (metres): {{ h.get_pkg_dict_extra(package, 'spatial-resolution') }} </p>
     {% endif %}
