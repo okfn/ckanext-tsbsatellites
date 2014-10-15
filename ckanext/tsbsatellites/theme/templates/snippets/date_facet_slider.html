@@ -3,18 +3,19 @@ Displays a slider widget to define a date filter on the dataset search page side
 #}
 {% set date_range = h.get_default_slider_values() %}
 {% set default_dates = h.get_date_url_param() %}
-<section id="dataset-slider" class="module module-narrow module-shallow" data-begin="{{ date_range[0] }}"
-data-end="{{ date_range[1] }}" data-default-begin="{{ default_dates[0] }}"
-data-default-end="{{ default_dates[1] }}">
+
+<section class="module module-narrow module-shallow js-hide" data-module="date-facet" data-module-begin="{{ date_range[0] }}" data-module-end="{{ date_range[1] }}" data-module-default_begin="{{ default_dates[0] }}" data-module-default_end="{{ default_dates[1] }}">
   <h2 class="module-heading">
     {{ _('Date of Collection') }}
-    <a href="{{ h.remove_url_param(['ext_begin_date', 'ext_end_date']) }}" class="action">{{ _('Clear') }}</a>
+    <a href="{{ h.remove_url_param(['ext_begin_date', 'ext_end_date']) }}" class="action">
+      {{ _('Clear') }}
+    </a>
   </h2>
-  <div id="dataset-slider-widget"></div>
-  <input type="date" name="ext_begin_date" placeholder="Begin Date" id="ext_begin_date" value="{{ default_dates[0] }}" />
-  <input type="date" name="ext_end_date" placeholder="End Date" id="ext_end_date" value="{{ default_dates[1] }}" />
-  <button id="ext_date_submit" class="btn">Update Search</button>
+  <input type="text" name="begin" placeholder="{{ _('Begin Date') }}" value="{{ default_dates[0] }}" />
+  <input type="text" name="end" placeholder="{{ _('End Date') }}" value="{{ default_dates[1] }}" />
+  <button class="btn">{{ _('Update Search') }}</button>
 </section>
+
 {% resource 'satellites-theme/slider' %}
 {% resource 'satellites-theme/jqueryui/css/satellites-theme/jquery-ui-1.10.4.custom.css' %}
 {% resource 'satellites-theme/jquery-range-slider/css/classic-min.css' %}
