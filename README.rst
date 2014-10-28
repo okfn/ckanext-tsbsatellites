@@ -112,8 +112,8 @@ To add metadata you must be logged in to the GeoNetwork instance. Click on
 Accessing the machines
 ======================
 
-Add the following to your .ssh/config
-
+Add the following to your .ssh/config::
+  
   Host s* !s*.okserver.org
       Hostname %h.okserver.org
       User <your username>
