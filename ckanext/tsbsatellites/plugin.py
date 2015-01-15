@@ -201,6 +201,7 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
                                     responsible_party.get('individual-name'))
         if not responsible_party_name:
             log.error('No organization defined for dataset {0}'.format(package_dict['name']))
+            return None
         else:
             org_name = _sanitize_org_name(responsible_party_name)
             try:
