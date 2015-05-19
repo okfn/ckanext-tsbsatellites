@@ -448,15 +448,24 @@ body > footer {
 .site-footer small {
   color: #ffffff;
 }
+.site-footer ul {
+  width: auto;
+  margin-right: 100px;
+  line-height: 20px;
+}
+.site-footer .footer-links,
+.site-footer .attribution {
+  width: auto;
+}
 .site-footer .attribution {
   float: right;
 }
-.site-footer .attribution img {
-  width: 158px;
+.site-footer .attribution a {
+  display: block;
+  margin-top: 10px;
 }
-.site-footer .attribution img .ckan-footer-logo {
-  height: 22px;
-  background-size: 68px auto;
+.site-footer .attribution a img {
+  width: 158px;
 }
 .site-footer .footer-links {
   width: 750px;
@@ -464,6 +473,14 @@ body > footer {
 .site-footer .footer-links ul:nth-child(2) {
   float: right;
   margin-right: 0;
+}
+.site-footer .ckan-footer-logo {
+  display: block;
+  width: 106px;
+  height: 36px;
+  margin-top: 2px;
+  text-indent: -900em;
+  background: url("/images/ckan-logo-footer.png") no-repeat top left;
 }
 /* Home */
 .homepage {
@@ -776,31 +793,6 @@ ul.category-grid li:nth-child(8n+8) a {
 .media-view:hover .banner,
 .media-view.hovered .banner {
   background-color: #333333;
-}
-/* Footer */
-.site-footer {
-  margin-top: 50px;
-}
-.footer-links,
-.attribution {
-  width: auto;
-}
-.site-footer ul {
-  width: auto;
-  margin-right: 100px;
-  line-height: 20px;
-}
-.site-footer li {
-  margin-bottom: 10px;
-}
-.ckan-footer-logo {
-  display: block;
-  width: 90px;
-  height: 30px;
-  margin-top: 2px;
-  background: url("../../../base/images/ckan-logo-footer.png") no-repeat top left;
-  text-indent: -900em;
-  background: url("/images/ckan-logo-footer.png") no-repeat top left;
 }
 #dataset-slider-widget {
   margin: 10px 0;
