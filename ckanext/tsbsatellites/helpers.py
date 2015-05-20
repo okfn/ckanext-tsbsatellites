@@ -6,16 +6,25 @@ import json
 import re
 
 CATEGORIES = [
+    {'name': 'biota', 'title': 'Biota', 'short_title': 'Biota'},
+    {'name': 'boundaries', 'title': 'Boundaries', 'short_title': 'Boundaries'},
     {'name': 'climatologyMeteorologyAtmosphere', 'title': 'Climatology / Meteorology / Atmosphere', 'short_title': 'Climatology'},
+    {'name': 'economy', 'title': 'Economy', 'short_title': 'Economy'},
     {'name': 'elevation', 'title': 'Elevation', 'short_title': 'Elevation'},
     {'name': 'environment', 'title': 'Environment', 'short_title': 'Environment'},
     {'name': 'farming', 'title': 'Farming', 'short_title': 'Farming'},
     {'name': 'geoscientificInformation', 'title': 'Geoscientific information', 'short_title': 'Geoscientific information'},
+    {'name': 'health', 'title': 'Health', 'short_title': 'Health'},
     {'name': 'imageryBaseMapsEarthCover', 'title': 'Imagery / Base Maps / Earth Cover', 'short_title': 'Imagery'},
     {'name': 'inlandWaters', 'title': 'Inland Waters', 'short_title': 'Inland Waters'},
     {'name': 'intelligenceMilitary', 'title': 'Intelligence / Military', 'short_title': 'Intelligence'},
+    {'name': 'location', 'title': 'Location', 'short_title': 'Location'},
+    {'name': 'ocean', 'title': 'Ocean', 'short_title': 'Ocean'},
     {'name': 'planningCadastre', 'title': 'Planning / Cadastre', 'short_title': 'Planning'},
+    {'name': 'society', 'title': 'Society', 'short_title': 'Society'},
     {'name': 'structure', 'title': 'Structure', 'short_title': 'Structure'},
+    {'name': 'transportation', 'title': 'Transportation', 'short_title': 'Transportation'},
+    {'name': 'utilitiesCommunication', 'title': 'Utilities / Communication', 'short_title': 'Utilities'},
 
     # Custom values, not part of the original vocabulary
     {'name': 'Copernicus', 'title': 'Copernicus', 'short_title': 'Copernicus'},
