@@ -538,6 +538,16 @@ body > footer {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+.homepage > * {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.homepage > *:last-child {
+  padding-bottom: 40px;
+}
+.homepage > *:nth-child(odd) {
+  background-color: #fff;
+}
 .homepage h2 {
   font-weight: 300;
   font-size: 24px;
@@ -556,6 +566,14 @@ body > footer {
   display: block;
   font-size: 30px;
   font-size: 3rem;
+}
+.homepage .disc-icon {
+  display: block;
+  margin-bottom: 30px;
+}
+.homepage .btn-large {
+  min-width: 126px;
+  text-transform: uppercase;
 }
 ul.category-grid {
   margin: 0;

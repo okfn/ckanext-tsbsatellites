@@ -7,44 +7,49 @@
 {% block toolbar %}{% endblock %}
 
 {% block content %}
-  <div class="homepage" role="main">
-    <div id="content" class="container">
-      <div class="flash-messages">
-        {{ self.flash() }}
-      </div>
-      {% block primary_content %}
-        <header>
-          {% if intro %}
-            {{ h.render_markdown(intro) }}
-          {% else %}
-            <p>
-              {% trans %}Satellite data, resources, and applications at your fingertips<br>
-            <strong><em>Explore, Examine, Engage</em></strong> {% endtrans %} </p>
-          {% endif %}
-        </header>
-        <form class="module-content search-form" method="get" action="{% url_for controller='package', action='search' %}">
-          <h3 class="heading">{{ _("Search by keyword") }}</h3>
-          <div class="search-input control-group search-giant">
-            <input id="search" type="text" class="search" name="q" value="" autocomplete="off" placeholder="{{ _('Search by keyword') }}" />
-            <button type="submit">
-              <i class="icon-search"></i>
-              <span>{{ _('Search') }}</span>
-            </button>
-          </div>
-        </form>
-      {% endblock %}
-      <section class="browse-category container">
-        {% set categories = h.get_categories() %}
-        <h3>Browse by category</h3>
-        <ul class="category-grid">
-          {% for category in categories %}
-            {% if category.count %}
-              <li><a href="/dataset?topic-category={{ category.name }}">{{ category.short_title }}</a></li>
+  <div class="homepage">
+    <div class="hero">
+      <div class="container">
+        <div class="flash-messages">
+          {{ self.flash() }}
+        </div>
+        {% block primary_content %}
+          <header>
+            {% if intro %}
+              {{ h.render_markdown(intro) }}
+            {% else %}
+              <p>
+                {% trans %}Satellite data, resources, and applications at your fingertips<br>
+              <strong><em>Explore, Examine, Engage</em></strong> {% endtrans %} </p>
             {% endif %}
-          {% endfor %}
-        </ul>
-      </section>
-      <section class="module">
+          </header>
+          <form class="module-content search-form" method="get" action="{% url_for controller='package', action='search' %}">
+            <h3 class="heading">{{ _("Search by keyword") }}</h3>
+            <div class="search-input control-group search-giant">
+              <input id="search" type="text" class="search" name="q" value="" autocomplete="off" placeholder="{{ _('Search by keyword') }}" />
+              <button type="submit">
+                <i class="icon-search"></i>
+                <span>{{ _('Search') }}</span>
+              </button>
+            </div>
+          </form>
+        {% endblock %}
+        <section class="browse-category container">
+          {% set categories = h.get_categories() %}
+          <h3>Browse by category</h3>
+          <ul class="category-grid">
+            {% for category in categories %}
+              {% if category.count %}
+                <li><a href="/dataset?topic-category={{ category.name }}">{{ category.short_title }}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </section>
+      </div>
+    </div>
+    <section class="module" role="main">
+      <div class="container">
+        <h2>Welcome to the <strong>Data Discovery Hub</strong></h2>
         <h3>What Satellite Data is available through the Data Discovery Hub?</h3>
         <p>This Satellite data hub contains primarily EO data which could be as either optical or radar images and information on a vast number of areas including oceans salinity, ice thickness;  crop health and air quality among a range of other products.<br></p>
 
@@ -52,8 +57,16 @@
           -	Communication satellites which power data on the go, from images and videos to broadband internet access. They link ships crossing the oceans, provide communications for aircraft, connect people in remote areas and enable disaster response teams to keep in touch.<br>
           -	Global Navigation Satellite Systems (GNSS) provide us with two essential pieces of information; position and time. Anything enabled with a GNSS receiver can also be used for navigation. Once a device is GNSS enabled it can provide a range of resilient and accurate global services and solutions.<br></p>
 
-      <p>For more information on the basics of what satellites can do and how they can help please refer to the <a href="https://sa.catapult.org.uk/satellites-4-everyone">Satellites for Everyone toolkit</a> or email the team <a href="mailto:info@satellites4everyone.co.uk">info@satellites4everyone.co.uk</a>.</p>
-    </div>
+        <p>For more information on the basics of what satellites can do and how they can help please refer to the <a href="https://sa.catapult.org.uk/satellites-4-everyone">Satellites for Everyone toolkit</a> or email the team <a href="mailto:info@satellites4everyone.co.uk">info@satellites4everyone.co.uk</a>.</p>
+      </div>
+    </section>
+    <section>
+      <div class="container">
+        <h2><strong>Sentinel Data</strong></h2>
+        <a href="http://sedas.satapps.org/" class="disc-icon"><img src="images/sentinel-data-icon.png" alt=""></a>
+        <a href="http://sedas.satapps.org/" class="btn btn-primary btn-large">Click Here</a>
+      </div>
+    </section>
   </div>
   {% resource 'satellites-theme/autocomplete' %}
   {% resource 'satellites-theme/jqueryui/css/satellites-theme/jquery-ui.css' %}
