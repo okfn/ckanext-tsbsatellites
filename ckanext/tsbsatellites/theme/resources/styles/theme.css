@@ -490,7 +490,7 @@ body > footer {
   background-color: #fff;
   background-image: none;
   padding-top: 30px;
-  padding-bottom: 30px;
+  padding-bottom: 0;
 }
 .homepage header {
   margin-bottom: 20px;
@@ -576,51 +576,89 @@ body > footer {
   text-transform: uppercase;
 }
 ul.category-grid {
-  margin: 0;
+  margin: 20px 0 0 0;
 }
 ul.category-grid li {
-  display: block;
-  float: left;
-  width: 16.667%;
+  display: inline-block;
+  width: 128px;
+  height: 195px;
+  vertical-align: top;
+  overflow: hidden;
+  margin: 0 23px;
+}
+ul.category-grid li:nth-child(11n+6) {
+  margin-left: -64px;
+}
+ul.category-grid li:nth-child(11n) {
+  margin-right: -64px;
 }
 ul.category-grid li a {
   display: block;
   text-align: center;
-  color: #fff;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   font-size: 16px;
   font-size: 1.6rem;
-  height: 54px;
-  line-height: 54px;
-  padding: 0 15px;
-  background-color: #2390a0;
+  color: #333333;
+}
+ul.category-grid li a:before {
+  content: '';
+  width: 124px;
+  height: 124px;
+  display: block;
+  border: solid 2px #333333;
+  background-color: #f5f5f5;
+  margin-bottom: 8px;
+  background-image: url(/base/images/placeholder-image.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 ul.category-grid li a:hover {
   text-decoration: none;
   opacity: 0.8;
 }
-ul.category-grid li:nth-child(8n+2) a {
-  background-color: #4823a0;
+ul.category-grid li[class*="climatology"] a:before {
+  background-image: url("/images/categories/climatology.jpg");
+  background-size: cover;
 }
-ul.category-grid li:nth-child(8n+3) a {
-  background-color: #8623a0;
+ul.category-grid li[class*="elevation"] a:before {
+  background-image: url("/images/categories/elevation.jpg");
+  background-size: cover;
 }
-ul.category-grid li:nth-child(8n+4) a {
-  background-color: #2351a0;
+ul.category-grid li[class*="environment"] a:before {
+  background-image: url("/images/categories/environment.jpg");
+  background-size: cover;
 }
-ul.category-grid li:nth-child(8n+5) a {
-  background-color: #a05d23;
+ul.category-grid li[class*="farming"] a:before {
+  background-image: url("/images/categories/farming.jpg");
+  background-size: cover;
 }
-ul.category-grid li:nth-child(8n+6) a {
-  background-color: #28a023;
+ul.category-grid li[class*="geoscientific"] a:before {
+  background-image: url("/images/categories/geoscientific.jpg");
+  background-size: cover;
 }
-ul.category-grid li:nth-child(8n+7) a {
-  background-color: #66a023;
+ul.category-grid li[class*="imagery"] a:before {
+  background-image: url("/images/categories/imagery.jpg");
+  background-size: cover;
 }
-ul.category-grid li:nth-child(8n+8) a {
-  background-color: #23a05d;
+ul.category-grid li[class*="inlandWaters"] a:before {
+  background-image: url("/images/categories/inland-waters.jpg");
+  background-size: cover;
+}
+ul.category-grid li[class*="intelligence"] a:before {
+  background-image: url("/images/categories/intelligence.jpg");
+  background-size: cover;
+}
+ul.category-grid li[class*="planning"] a:before {
+  background-image: url("/images/categories/planning.jpg");
+  background-size: cover;
+}
+ul.category-grid li[class*="structure"] a:before {
+  background-image: url("/images/categories/structure.jpg");
+  background-size: cover;
+}
+ul.category-grid li[class*="Copernicus"] a:before {
+  background-image: url("/images/categories/copernicus.jpg");
+  background-size: cover;
 }
 /* Dataset Search */
 .search-form h2 {
@@ -790,7 +828,7 @@ ul.category-grid li:nth-child(8n+8) a {
 }
 .media-item {
   width: 184px;
-  background-color: #f2f2f2;
+  background-color: #ffffff;
 }
 .media-view {
   -webkit-border-radius: 0;
@@ -799,7 +837,7 @@ ul.category-grid li:nth-child(8n+8) a {
   -moz-background-clip: padding;
   border-radius: 0;
   background-clip: padding-box;
-  border-color: #f2f2f2;
+  border-color: #ffffff;
 }
 .media-view:hover,
 .media-view.hovered {
