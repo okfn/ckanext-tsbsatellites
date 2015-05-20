@@ -204,78 +204,95 @@ body > footer {
   font-size: 1.4rem;
 }
 
-.account-masthead,
 .masthead {
   background-color:@header-colour;
   background-image:none;
   color:@header-text-colour;
-  
-  a {
-    color:@header-text-colour;
-  }
-}
-.account-masthead {
-  padding-top:10px;
-  .account ul li {
-    border:none;
-  }
-  .account ul li a {
-    color:@header-text-colour;
-    padding:0;
-    margin-left:15px;
-    font-weight:normal;
-    font-style:italic;
-    i {
-      display:none;
-    }
-  }
-  .account ul li a:hover {
-    background-color: @header-colour;
-    color: @header-text-colour;
-  }
-  .account.authed .image {
-    padding:0;
-    .gravatar {
-      display:none;
-    }
-    .username {
-      text-transform:capitalize;
-      margin:0;
-    }
-  }
-  .account .notifications a span,
-  .account .notifications a:hover span,
-  .account .notifications.notifications-important a span {
-    background-color: @header-colour;
-    font-size: inherit;
-    margin: 0;
-    padding: 0;
-    color:@header-text-colour;
-  }
-  .account .notifications a span.badge {
-    background-color:@header-colour;
-    .font-size(12);
-    padding: 1px 5px;
-    .border-radius(8);
-    color:#fff;
-    font-style:normal;
-    display:none;
-  }
-  .account .notifications.notifications-important a span.badge {
-    background-color:@accent;
-    display:inline-block;
-    color:@header-colour;
-  }
-}
-.masthead {
   min-height:65px;
-  .navigation {
-    margin:0 0 0 0;
+  
+  .container {
+    width:auto;
+    max-width:1140px;
+    padding:10px;
   }
+  
+  .navigation {
+    margin:12px 0 0 0;
+    float:right;
+    
+    .nav {
+      float:right;
+      
+      &.nav-pills li {
+        a {
+          .font-size(14);
+          .border-radius(0);
+          padding:10px 0;
+          margin:0 0 0 32px;
+          font-weight:bold;
+          text-transform:uppercase;
+        }
+        
+        a:hover,
+        &.active a {
+          background-color: transparent;
+          color:@accent;
+        }
+      }
+    }
+    
+    a {
+      color:@header-text-colour;
+    }
+  
+    .account li {
+      border:none;
+    }
+    .account li a {
+      color:@header-text-colour;
+      padding:0;
+      margin-left:15px;
+      i {
+        display:none;
+      }
+    }
+    .account li a:hover {
+      background-color: @header-colour;
+      color: @header-text-colour;
+    }
+    .account.authed .image {
+      .gravatar {
+        display:none;
+      }
+    }
+    .account .notifications a span,
+    .account .notifications a:hover span,
+    .account .notifications.notifications-important a span {
+      background-color: @header-colour;
+      font-size: inherit;
+      margin: 0;
+      padding: 0;
+      color:@header-text-colour;
+    }
+    .account .notifications a span.badge {
+      background-color:@header-colour;
+      .font-size(12);
+      padding: 1px 5px;
+      .border-radius(8);
+      color:#fff;
+      font-style:normal;
+      display:none;
+    }
+    .account .notifications.notifications-important a span.badge {
+      background-color:@accent;
+      display:inline-block;
+      color:@header-colour;
+    }
+  }
+  
   hgroup.header-image a {
     display:inline-block;
-    height:75px;
-    margin-top:-27px;
+    height:60px;
     img {
       max-height:100%;
     }
@@ -290,22 +307,6 @@ body > footer {
   }
   hgroup h2 {
     bottom: -12px;
-  }
-  .navigation .nav-pills li a {
-    .font-size(14);
-    .border-radius(0);
-    padding:15px 0 24px 0;
-    margin:0 0 0 35px;
-    font-weight:bold;
-    text-transform:uppercase;
-  }
-  .navigation .nav-pills li a:hover,
-  .navigation .nav-pills li.active a {
-    background-color: transparent;
-    color:@accent;
-  }
-  .site-search {
-    display:none;
   }
 }
 

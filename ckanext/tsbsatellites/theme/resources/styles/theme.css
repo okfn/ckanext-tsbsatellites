@@ -222,56 +222,74 @@ body > header,
 body > footer {
   font-size: 1.4rem;
 }
-.account-masthead,
 .masthead {
   background-color: #262626;
   background-image: none;
   color: #ffffff;
+  min-height: 65px;
 }
-.account-masthead a,
-.masthead a {
+.masthead .container {
+  width: auto;
+  max-width: 1140px;
+  padding: 10px;
+}
+.masthead .navigation {
+  margin: 12px 0 0 0;
+  float: right;
+}
+.masthead .navigation .nav {
+  float: right;
+}
+.masthead .navigation .nav.nav-pills li a {
+  font-size: 14px;
+  font-size: 1.4rem;
+  -webkit-border-radius: 0;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0;
+  -moz-background-clip: padding;
+  border-radius: 0;
+  background-clip: padding-box;
+  padding: 10px 0;
+  margin: 0 0 0 32px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.masthead .navigation .nav.nav-pills li a:hover,
+.masthead .navigation .nav.nav-pills li.active a {
+  background-color: transparent;
+  color: #2390a0;
+}
+.masthead .navigation a {
   color: #ffffff;
 }
-.account-masthead {
-  padding-top: 10px;
-}
-.account-masthead .account ul li {
+.masthead .navigation .account li {
   border: none;
 }
-.account-masthead .account ul li a {
+.masthead .navigation .account li a {
   color: #ffffff;
   padding: 0;
   margin-left: 15px;
-  font-weight: normal;
-  font-style: italic;
 }
-.account-masthead .account ul li a i {
+.masthead .navigation .account li a i {
   display: none;
 }
-.account-masthead .account ul li a:hover {
+.masthead .navigation .account li a:hover {
   background-color: #262626;
   color: #ffffff;
 }
-.account-masthead .account.authed .image {
-  padding: 0;
-}
-.account-masthead .account.authed .image .gravatar {
+.masthead .navigation .account.authed .image .gravatar {
   display: none;
 }
-.account-masthead .account.authed .image .username {
-  text-transform: capitalize;
-  margin: 0;
-}
-.account-masthead .account .notifications a span,
-.account-masthead .account .notifications a:hover span,
-.account-masthead .account .notifications.notifications-important a span {
+.masthead .navigation .account .notifications a span,
+.masthead .navigation .account .notifications a:hover span,
+.masthead .navigation .account .notifications.notifications-important a span {
   background-color: #262626;
   font-size: inherit;
   margin: 0;
   padding: 0;
   color: #ffffff;
 }
-.account-masthead .account .notifications a span.badge {
+.masthead .navigation .account .notifications a span.badge {
   background-color: #262626;
   font-size: 12px;
   font-size: 1.2rem;
@@ -286,21 +304,14 @@ body > footer {
   font-style: normal;
   display: none;
 }
-.account-masthead .account .notifications.notifications-important a span.badge {
+.masthead .navigation .account .notifications.notifications-important a span.badge {
   background-color: #2390a0;
   display: inline-block;
   color: #262626;
 }
-.masthead {
-  min-height: 65px;
-}
-.masthead .navigation {
-  margin: 0 0 0 0;
-}
 .masthead hgroup.header-image a {
   display: inline-block;
-  height: 75px;
-  margin-top: -27px;
+  height: 60px;
 }
 .masthead hgroup.header-image a img {
   max-height: 100%;
@@ -315,28 +326,6 @@ body > footer {
 }
 .masthead hgroup h2 {
   bottom: -12px;
-}
-.masthead .navigation .nav-pills li a {
-  font-size: 14px;
-  font-size: 1.4rem;
-  -webkit-border-radius: 0;
-  -webkit-background-clip: padding-box;
-  -moz-border-radius: 0;
-  -moz-background-clip: padding;
-  border-radius: 0;
-  background-clip: padding-box;
-  padding: 15px 0 24px 0;
-  margin: 0 0 0 35px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-.masthead .navigation .nav-pills li a:hover,
-.masthead .navigation .nav-pills li.active a {
-  background-color: transparent;
-  color: #2390a0;
-}
-.masthead .site-search {
-  display: none;
 }
 [role="main"],
 .main {
