@@ -44,7 +44,6 @@ def get_categories():
         These can be used to build the categories selector on the front page
     '''
 
-
     # Get counts
     data_dict = {
         'rows': 0,
@@ -72,6 +71,7 @@ def get_categories():
 
     return all_categories
 
+
 def get_default_slider_values():
     '''Returns the earliest collection date from package_search'''
 
@@ -82,8 +82,8 @@ def get_default_slider_values():
     }
     result = p.toolkit.get_action('package_search')({}, data_dict)['results']
     if len(result) == 1:
-        date = filter(lambda x: x['key'] == 'begin-collection_date',
-                result[0].get('extras', []))
+        date = filter(lambda x: x['key'] == 'begin-collection_date', 
+                      result[0].get('extras', []))
         begin = date[0]['value']
     else:
         begin = datetime.date.today().isoformat()
@@ -96,16 +96,18 @@ def get_default_slider_values():
     result = p.toolkit.get_action('package_search')({}, data_dict)['results']
     if len(result) == 1:
         date = filter(lambda x: x['key'] == 'end-collection_date',
-                result[0].get('extras', []))
+                      result[0].get('extras', []))
         end = date[0]['value']
     else:
         end = datetime.date.today().isoformat()
     return begin, end
 
+
 def format_data_costs(package):
     data = h.get_pkg_dict_extra(package, 'access_constraints')
     data_list = json.loads(data)
     return ', '.join(data_list)
+
 
 def format_frequency(package):
     freq = h.get_pkg_dict_extra(package, 'frequency-of-collection')
@@ -132,9 +134,11 @@ def format_frequency(package):
         unit_str = '{0}s'.format(unit_str)
     return '{0} {1}'.format(freq_num, unit_str)
 
+
 def run_format_regex(string):
     r = re.compile('{(.*)}')
     return r.match(string).group(1)
+
 
 def get_date_url_param():
     params = ['', '']
@@ -147,10 +151,11 @@ def get_date_url_param():
             continue
     return params
 
+
 def remove_public(item):
     '''
     Function to remove "Public - " from the labels for search facet.
     '''
     if item['display_name'].startswith('Public - '):
-         item['display_name'] = item['display_name'][9:]
-    return h.truncate(item['display_name'], 22)
+        item['display_name'] = item['display_name'][9:]
+    return h.whtext.truncate(item['display_name'], 22)
