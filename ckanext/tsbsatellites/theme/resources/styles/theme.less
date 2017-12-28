@@ -551,6 +551,14 @@ body>footer {
       padding-top: @grid-gutter-width*6;
       padding-bottom: @grid-gutter-width*6;
     }
+    @media (max-width: @default) {
+      .row-fluid {
+        >div {
+          margin-left: inherit;
+          width: auto;
+        }
+      }
+    }
     .search-form {
       padding: @grid-gutter-width @grid-gutter-width*2 0;
       margin: 0;
@@ -569,7 +577,8 @@ body>footer {
       @media (max-width: @default) {
         justify-content: center;
         >div {
-          &, &.offset1 {
+          &,
+          &.offset1 {
             margin-left: 0;
           }
           width: auto;
