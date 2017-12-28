@@ -598,6 +598,12 @@ body > footer {
     padding-bottom: 120px;
   }
 }
+@media (max-width: 979px) {
+  .homepage .hero .row-fluid > div {
+    margin-left: inherit;
+    width: auto;
+  }
+}
 .homepage .hero .search-form {
   padding: 20px 40px 0;
   margin: 0;
@@ -612,6 +618,19 @@ body > footer {
 .homepage [role=main] .row-fluid {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+}
+@media (max-width: 979px) {
+  .homepage [role=main] .row-fluid {
+    justify-content: center;
+  }
+  .homepage [role=main] .row-fluid > div {
+    width: auto;
+  }
+  .homepage [role=main] .row-fluid > div,
+  .homepage [role=main] .row-fluid > div.offset1 {
+    margin-left: 0;
+  }
 }
 .homepage [role=main] .module-title {
   padding: 20px;
