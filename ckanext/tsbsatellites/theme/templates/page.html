@@ -1,0 +1,34 @@
+{% ckan_extends %}
+
+{%- block content %}
+{% block maintag %}<div role="main">{% endblock %}
+  <div id="content" class="container-fluid">
+      <div class="row-fluid">
+        <div class="span10 offset1">
+        {% block main_content %}
+          {% block flash %}
+          {{ super() }}
+          {% endblock %}
+
+          {% block toolbar %}
+          {{ super() }}
+          {% endblock %}
+
+          <div class="row-fluid {% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' %} no-nav{% endif %}">
+            {% block pre_primary %}
+            {% endblock %}
+
+            {% block primary %}
+            {{ super() }}
+            {% endblock %}
+
+            {% block secondary %}
+            {{ super() }}
+            {% endblock %}
+          </div>
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock -%}

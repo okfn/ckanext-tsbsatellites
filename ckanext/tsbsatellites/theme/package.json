@@ -1,0 +1,17 @@
+{
+  "name": "tsbsatellites",
+  "version": "1.0.0",
+  "description": "Front-end assets building for ckanext-tsbsatellites",
+  "main": "index.js",
+  "scripts": {
+    "watch": "less-watch-compiler resources/styles resources/styles theme.less",
+    "less": "lessc resources/styles/theme.less resources/styles/theme.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Goce Mitevski",
+  "license": "ISC",
+  "devDependencies": {
+    "less": "^2.7.2",
+    "less-watch-compiler": "^1.6.7"
+  }
+}
