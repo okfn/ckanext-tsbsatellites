@@ -710,7 +710,7 @@ body > footer {
   text-transform: uppercase;
 }
 ul.category-grid {
-  margin: 20px 0 0 0;
+  margin: 20px 0;
 }
 ul.category-grid li {
   display: inline-block;
@@ -718,13 +718,7 @@ ul.category-grid li {
   height: 195px;
   vertical-align: top;
   overflow: hidden;
-  margin: 0 23px;
-}
-ul.category-grid li:nth-child(11n+6) {
-  margin-left: -64px;
-}
-ul.category-grid li:nth-child(11n) {
-  margin-right: -64px;
+  margin: 10px;
 }
 ul.category-grid li a {
   display: block;
