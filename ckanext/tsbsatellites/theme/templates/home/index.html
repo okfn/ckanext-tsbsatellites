@@ -37,18 +37,20 @@
             {% endblock %}
           </div>
         </div>
-        <section class="browse-category container">
-          {% set categories = h.get_categories() %}
-          <h3>Browse by category</h3>
-          <ul class="category-grid">
-            {% for category in categories %}
-              {% if category.count %}
-                <li class="{{ category.name }}"><a href="/dataset?topic-category={{ category.name }}">{{ category.short_title }}</a></li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-        </section>
       </div>
+    </div>
+    <div class="container-fluid">
+      <section class="browse-category container-fluid">
+        {% set categories = h.get_categories() %}
+        <h3>Browse by category</h3>
+        <ul class="category-grid">
+          {% for category in categories %}
+          {% if category.count %}
+          <li class="{{ category.name }}"><a href="/dataset?topic-category={{ category.name }}">{{ category.short_title }}</a></li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </section>
     </div>
     <section class="module" role="main">
       <div class="container-fluid">
