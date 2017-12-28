@@ -30,7 +30,6 @@ h2 {
   text-transform: uppercase;
 }
 
-
 /* Inputs */
 
 input,
@@ -411,7 +410,12 @@ body>footer {
 }
 
 .search-form {
-  border: none;
+  .search-input{
+    margin-bottom: @grid-gutter-width*1.5;
+  }
+  margin-bottom: @grid-gutter-width*1.5;
+  padding-bottom: @grid-gutter-width;
+  border-bottom: 2px solid @accent;
   .search-input.search-giant button {
     background-color: @accent;
     margin: 0;
@@ -648,20 +652,12 @@ body>footer {
 }
 
 ul.category-grid {
-  margin: 20px 0 0 0;
+  margin: 0;
   li {
     display: inline-block;
-    width: 128px;
-    height: 195px;
     vertical-align: top;
-    overflow: hidden;
-    margin: 0 23px;
-    &:nth-child(11n+6) {
-      margin-left: -64px;
-    }
-    &:nth-child(11n) {
-      margin-right: -64px;
-    }
+    overflow: visible;
+    margin: @grid-gutter-width @grid-gutter-width/2;
     a {
       display: block;
       text-align: center;
@@ -670,16 +666,20 @@ ul.category-grid {
       font-family: @heading-font;
       &:before {
         content: '';
-        width: 124px;
-        height: 124px;
+        width: @grid-gutter-width*4;
+        height: @grid-gutter-width*4;
         display: block;
-        border: solid 2px @text-colour;
+        border: 2px solid @text-colour;
         background-color: @main-bg;
-        margin-bottom: 8px;
+        margin-bottom: @grid-gutter-width/2;
         background-image: url(/base/images/placeholder-image.png);
         background-size: contain;
         background-repeat: no-repeat;
-        background-position: center center;
+        border-radius: 50%;
+        background-color: @text-colour;
+        border-color: @accent;
+        border-width: @grid-gutter-width/4;
+        background-blend-mode: lighten;
       }
       &:hover {
         text-decoration: none;
@@ -732,8 +732,12 @@ ul.category-grid {
 /* Dataset Search */
 
 .search-form h2 {
-  .font-size(14);
-  font-weight: normal;
+  .font-size(24);
+  font-weight: 400;
+}
+
+.dataset-heading{
+  .font-size(18);
 }
 
 .dataset-heading a {
