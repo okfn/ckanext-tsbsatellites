@@ -364,21 +364,23 @@ body>footer {
   }
 }
 
-.wrapper {
-  border: none;
-  .border-radius(0);
-  .box-shadow(none);
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2Pcu3fvfwAHrgM49yDwxgAAAABJRU5ErkJggg==);
-  background-repeat: repeat-y;
-  background-position: 244px top;
-}
-
-[role="main"] .primary {
-  // width: 670px;
-}
+// .wrapper {
+//   border: none;
+//   .border-radius(0);
+//   .box-shadow(none);
+//   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2Pcu3fvfwAHrgM49yDwxgAAAABJRU5ErkJggg==);
+//   background-repeat: repeat-y;
+//   background-position: 244px top;
+// }
 
 .primary {
   background-color: white;
+
+  .module-content{
+    h1{
+      margin-top: @grid-gutter-width*1.5;
+    }
+  }
 }
 
 @media (min-width: 768px) {
@@ -390,6 +392,9 @@ body>footer {
 .module-content {
   padding-left: @grid-gutter-width*2;
   padding-right: @grid-gutter-width*2;
+  &:first-child{
+    padding-top: @grid-gutter-width*1.5;
+  }
 }
 
 @media (min-width: 768px) {
@@ -463,8 +468,14 @@ body>footer {
   }
 }
 
+.filter-list{
+  .facet{
+    margin-right: @grid-gutter-width/2;
+  }
+}
+
 .search-form .filter-list .pill {
-  margin-right: 12px;
+  margin-right: @grid-gutter-width;
 }
 
 .search-form .filter-list .pill:after {
@@ -773,12 +784,15 @@ ul.category-grid {
 }
 
 .styled-select {
-  width: 160px;
+  padding: 0 @grid-gutter-width/4;
+  // width: 160px;
   overflow: hidden;
+  background-color: @main-bg;
   background-image: url(/images/select-arrow.png);
   background-repeat: no-repeat;
-  background-position: right center;
+  background-position: 95% center;
   background-size: 7px 6px;
+  .border-radius(@grid-gutter-width/2);
 }
 
 .styled-select select {
@@ -804,38 +818,39 @@ ul.category-grid {
   line-height: 30px;
 }
 
-.secondary .nav-item,
-.secondary .nav-aside li {
-  list-style: square;
-  color: @light-text;
-  padding-left: 8px;
-  margin-left: 15px;
-  border: none;
-}
+// .secondary .nav-item,
+// .secondary .nav-aside li {
+//   list-style: square;
+//   color: @light-text;
+//   padding-left: 8px;
+//   margin-left: 15px;
+//   border: none;
+// }
 
-.secondary .nav-item.active,
-.secondary .nav-aside li.active {
-  color: @text-colour;
-  background-color: transparent;
-}
+// .secondary .nav-item.active,
+// .secondary .nav-aside li.active {
+//   color: @text-colour;
+//   background-color: transparent;
+// }
 
 .secondary .nav-item.active>a,
 .secondary .nav-aside li.active a,
 .secondary .nav-item.active>a:hover,
 .secondary .nav-aside li.active a:hover {
-  background-color: transparent;
-  color: @text-colour;
+  background-color: @accent;
 }
 
 .secondary .nav-item.active>a:before,
 .secondary .nav-aside li.active a:before {
+  .arrow-right(@grid-gutter-width, @accent);
+  right: -@grid-gutter-width/2;
   background-image: none;
 }
 
-.secondary .nav>li>a:hover,
-.secondary .nav>li>a:focus {
-  background-color: transparent;
-}
+// .secondary .nav>li>a:hover,
+// .secondary .nav>li>a:focus {
+//   background-color: transparent;
+// }
 
 .module-footer {
   border: none;
@@ -845,6 +860,17 @@ ul.category-grid {
   }
 }
 
+.no-nav{
+  .hug{
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  div.module-content{
+    margin-top: 0;
+    padding-top: @grid-gutter-width*1.5;
+    background-color: white;
+  }
+}
 
 /* Dataset Add */
 
@@ -908,6 +934,24 @@ ul.category-grid {
 
 /* Modules */
 
+.module-resource{
+  .actions{
+    top: @grid-gutter-width/2;
+    right: 0;
+  }
+  ~ .secondary{
+    @media (min-width: @tablet) {
+      min-height: calc(100%);
+      width: calc(23.40425532% + 2.12765957%);
+    }
+    background-color: @box-bg;
+    padding: @grid-gutter-width 0 @grid-gutter-width @grid-gutter-width;
+    .module-heading{
+      padding: @grid-gutter-width/4;
+    }
+  }
+}
+
 .module-narrow .module-heading,
 .module-narrow .module-content,
 .module-narrow .module-footer {
@@ -936,6 +980,15 @@ ul.category-grid {
   // }
 }
 
+.resources{
+  h3{
+    text-transform: uppercase;
+    padding-bottom: @grid-gutter-width/2;
+    margin-top: @grid-gutter-width;
+    border-bottom: 1px solid @main-bg;
+  }
+}
+
 
 /* Grids */
 
@@ -949,6 +1002,7 @@ ul.category-grid {
 .media-item {
   width: 184px;
   background-color: @box-bg;
+  margin-top: @grid-gutter-width;
 }
 
 .media-view {
