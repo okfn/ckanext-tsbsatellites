@@ -176,9 +176,6 @@ body {
   background-image: none;
   line-height: 1.7;
   .font-size(14);
-  @media(max-width: @tablet) {
-    padding: 0;
-  }
 }
 
 
@@ -198,19 +195,11 @@ body>footer {
   min-height: auto;
   .section-wrapper {
     display: flex;
-    @media (max-width: @default) {
-      align-items: center;
-      flex-direction: column;
-    }
   }
   .header-image {
     order: 1;
     display: flex;
     align-items: center;
-    @media (max-width: @default) {
-      margin-top: @grid-gutter-width/2;
-      margin-bottom: @grid-gutter-width;
-    }
   }
   .navigation {
     margin: auto;
@@ -221,21 +210,10 @@ body>footer {
     flex-direction: column;
     flex-wrap: wrap;
     display: flex;
-    @media (max-width: @default) {
-      align-items: center;
-      justify-content: center;
-    }
-    @media (min-width: @desktop) {
-      align-items: flex-start;
-      flex-direction: row;
-    }
     .nav {
       order: 1;
       display: flex;
       flex-wrap: wrap;
-      @media (max-width: @tablet) {
-        display: inline-block;
-      }
       &.nav-pills {
         li {
           &.active {
@@ -350,14 +328,6 @@ body>footer {
 }
 
 .toolbar {
-  @media (max-width: @tablet){
-    padding: @grid-gutter-width/2 @grid-gutter-width/2 0;
-    .breadcrumb{
-      .home{
-        display: inline-block;
-      }
-    }
-  }
   .breadcrumb {
     font-size: 100%;
     li {
@@ -378,49 +348,22 @@ body>footer {
   .border-radius(0);
   .box-shadow(none);
   background: none;
-  @media (max-width: @tablet){
-    margin: auto;
-  }
 }
 
 .primary {
   background-color: white;
-
-  @media (max-width: @tablet){
-    margin-bottom: @grid-gutter-width;
-  }
-
-  .module-content{
-    h1{
+  .module-content {
+    h1 {
       margin-top: @grid-gutter-width*1.5;
     }
-  }
-}
-
-.secondary{
-  @media (max-width: @tablet){
-    position: relative;
-    padding: @grid-gutter-width;
-  }
-}
-
-@media (min-width: 768px) {
-  .span9 div.module-content {
-    padding-left: @grid-gutter-width*2;
   }
 }
 
 .module-content {
   padding-left: @grid-gutter-width*2;
   padding-right: @grid-gutter-width*2;
-  &:first-child{
+  &:first-child {
     padding-top: @grid-gutter-width*1.5;
-  }
-}
-
-@media (min-width: 768px) {
-  .span9 .page-header {
-    margin-left: 0;
   }
 }
 
@@ -489,8 +432,8 @@ body>footer {
   }
 }
 
-.filter-list{
-  .facet{
+.filter-list {
+  .facet {
     margin-right: @grid-gutter-width/2;
   }
 }
@@ -575,22 +518,6 @@ body>footer {
     position: relative;
     background: linear-gradient(@hero-bg-overlay, @hero-bg-overlay), url("/images/satellites-catapult-hero-background.jpg") center 40% no-repeat;
     background-size: cover;
-    @media (max-width: @tablet) {
-      padding-top: @grid-gutter-width*4;
-      padding-bottom: @grid-gutter-width*4;
-    }
-    @media (min-width: @tablet) {
-      padding-top: @grid-gutter-width*6;
-      padding-bottom: @grid-gutter-width*6;
-    }
-    @media (max-width: @default) {
-      .row-fluid {
-        >div {
-          margin-left: inherit;
-          width: auto;
-        }
-      }
-    }
     .search-form {
       padding: @grid-gutter-width @grid-gutter-width*2 0;
       margin: 0;
@@ -606,16 +533,6 @@ body>footer {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      @media (max-width: @default) {
-        justify-content: center;
-        >div {
-          &,
-          &.offset1 {
-            margin-left: 0;
-          }
-          width: auto;
-        }
-      }
     }
     .module-title {
       padding: @grid-gutter-width;
@@ -805,8 +722,7 @@ ul.category-grid {
 }
 
 .styled-select {
-  padding: 0 @grid-gutter-width/4;
-  // width: 160px;
+  padding: 0 @grid-gutter-width/4; // width: 160px;
   overflow: hidden;
   background-color: @main-bg;
   background-image: url(/images/select-arrow.png);
@@ -847,13 +763,11 @@ ul.category-grid {
 //   margin-left: 15px;
 //   border: none;
 // }
-
 // .secondary .nav-item.active,
 // .secondary .nav-aside li.active {
 //   color: @text-colour;
 //   background-color: transparent;
 // }
-
 .secondary .nav-item.active>a,
 .secondary .nav-aside li.active a,
 .secondary .nav-item.active>a:hover,
@@ -863,7 +777,8 @@ ul.category-grid {
 
 .secondary .nav-item.active>a:before,
 .secondary .nav-aside li.active a:before {
-  .arrow-right(@grid-gutter-width, @accent);
+  .arrow-right(@grid-gutter-width,
+  @accent);
   right: -@grid-gutter-width/2;
   background-image: none;
 }
@@ -872,7 +787,6 @@ ul.category-grid {
 // .secondary .nav>li>a:focus {
 //   background-color: transparent;
 // }
-
 .module-footer {
   border: none;
   .read-more {
@@ -881,17 +795,18 @@ ul.category-grid {
   }
 }
 
-.no-nav{
-  .hug{
+.no-nav {
+  .hug {
     margin-bottom: 0;
     padding-bottom: 0;
   }
-  div.module-content{
+  div.module-content {
     margin-top: 0;
     padding-top: @grid-gutter-width*1.5;
     background-color: white;
   }
 }
+
 
 /* Dataset Add */
 
@@ -955,19 +870,15 @@ ul.category-grid {
 
 /* Modules */
 
-.module-resource{
-  .actions{
+.module-resource {
+  .actions {
     top: @grid-gutter-width/2;
     right: 0;
   }
-  ~ .secondary{
-    @media (min-width: @tablet) {
-      min-height: calc(100%);
-      width: calc(23.40425532% + 2.12765957%);
-    }
+  ~.secondary {
     background-color: @box-bg;
     padding: @grid-gutter-width 0 @grid-gutter-width @grid-gutter-width;
-    .module-heading{
+    .module-heading {
       padding: @grid-gutter-width/4;
     }
   }
@@ -993,8 +904,8 @@ ul.category-grid {
   padding-top: 5px;
 }
 
-.dataset-map-expanded{
-  #dataset-map{
+.dataset-map-expanded {
+  #dataset-map {
     z-index: 999;
     width: 100%;
     height: 55%;
@@ -1003,12 +914,6 @@ ul.category-grid {
     margin: @grid-gutter-width/2 -@grid-gutter-width 0;
     padding: @grid-gutter-width;
     border: none;
-    @media (max-width: @tablet){
-      margin: @grid-gutter-width*2 @grid-gutter-width;
-      padding: 0;
-      height: auto;
-      width: 94%;
-    }
   }
 }
 
@@ -1020,8 +925,8 @@ ul.category-grid {
   // }
 }
 
-.resources{
-  h3{
+.resources {
+  h3 {
     text-transform: uppercase;
     padding-bottom: @grid-gutter-width/2;
     margin-top: @grid-gutter-width;
@@ -1078,10 +983,18 @@ ul.category-grid {
   max-width: 96%;
 }
 
-#followee-filter{
-  .btn{
-    .caret{
+#followee-filter {
+  .btn {
+    .caret {
       border-top-color: @box-bg;
     }
   }
 }
+
+
+/* Responsive Design Imports */
+
+@import 'responsive-desktop.less';
+@import 'responsive-default.less';
+@import 'responsive-tablet.less';
+@import 'responsive-phone.less';
