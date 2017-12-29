@@ -424,23 +424,11 @@ body > footer {
 .toolbar .breadcrumb a {
   color: #333;
 }
-.wrapper {
-  border: none;
-  -webkit-border-radius: 0;
-  -webkit-background-clip: padding-box;
-  -moz-border-radius: 0;
-  -moz-background-clip: padding;
-  border-radius: 0;
-  background-clip: padding-box;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2Pcu3fvfwAHrgM49yDwxgAAAABJRU5ErkJggg==);
-  background-repeat: repeat-y;
-  background-position: 244px top;
-}
 .primary {
   background-color: white;
+}
+.primary .module-content h1 {
+  margin-top: 30px;
 }
 @media (min-width: 768px) {
   .span9 div.module-content {
@@ -450,6 +438,9 @@ body > footer {
 .module-content {
   padding-left: 40px;
   padding-right: 40px;
+}
+.module-content:first-child {
+  padding-top: 30px;
 }
 @media (min-width: 768px) {
   .span9 .page-header {
@@ -524,8 +515,11 @@ body > footer {
   line-height: 9px;
   text-align: center;
 }
+.filter-list .facet {
+  margin-right: 10px;
+}
 .search-form .filter-list .pill {
-  margin-right: 12px;
+  margin-right: 20px;
 }
 .search-form .filter-list .pill:after {
   content: '+';
@@ -838,12 +832,19 @@ ul.category-grid li[class*="Copernicus"] a:before {
   margin-right: 5px;
 }
 .styled-select {
-  width: 160px;
+  padding: 0 5px;
   overflow: hidden;
+  background-color: #f5f5f5;
   background-image: url(/images/select-arrow.png);
   background-repeat: no-repeat;
-  background-position: right center;
+  background-position: 95% center;
   background-size: 7px 6px;
+  -webkit-border-radius: 10px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 10px;
+  -moz-background-clip: padding;
+  border-radius: 10px;
+  background-clip: padding-box;
 }
 .styled-select select {
   background: transparent;
@@ -864,33 +865,21 @@ ul.category-grid li[class*="Copernicus"] a:before {
   float: left;
   line-height: 30px;
 }
-.secondary .nav-item,
-.secondary .nav-aside li {
-  list-style: square;
-  color: #808080;
-  padding-left: 8px;
-  margin-left: 15px;
-  border: none;
-}
-.secondary .nav-item.active,
-.secondary .nav-aside li.active {
-  color: #333;
-  background-color: transparent;
-}
 .secondary .nav-item.active > a,
 .secondary .nav-aside li.active a,
 .secondary .nav-item.active > a:hover,
 .secondary .nav-aside li.active a:hover {
-  background-color: transparent;
-  color: #333;
+  background-color: #2390a0;
 }
 .secondary .nav-item.active > a:before,
 .secondary .nav-aside li.active a:before {
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid #2390a0;
+  right: -10px;
   background-image: none;
-}
-.secondary .nav > li > a:hover,
-.secondary .nav > li > a:focus {
-  background-color: transparent;
 }
 .module-footer {
   border: none;
@@ -899,6 +888,15 @@ ul.category-grid li[class*="Copernicus"] a:before {
   font-weight: normal;
   font-size: 12px;
   font-size: 1.2rem;
+}
+.no-nav .hug {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.no-nav div.module-content {
+  margin-top: 0;
+  padding-top: 30px;
+  background-color: white;
 }
 /* Dataset Add */
 .editor .editor-info-block {
@@ -960,6 +958,23 @@ ul.category-grid li[class*="Copernicus"] a:before {
   margin-right: 0;
 }
 /* Modules */
+.module-resource .actions {
+  top: 10px;
+  right: 0;
+}
+.module-resource ~ .secondary {
+  background-color: #fff;
+  padding: 20px 0 20px 20px;
+}
+@media (min-width: 767px) {
+  .module-resource ~ .secondary {
+    min-height: calc(100%);
+    width: calc(25.53191489%);
+  }
+}
+.module-resource ~ .secondary .module-heading {
+  padding: 5px;
+}
 .module-narrow .module-heading,
 .module-narrow .module-content,
 .module-narrow .module-footer {
@@ -980,6 +995,12 @@ ul.category-grid li[class*="Copernicus"] a:before {
 #dataset-map .action {
   margin-bottom: 10px;
 }
+.resources h3 {
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  margin-top: 20px;
+  border-bottom: 1px solid #f5f5f5;
+}
 /* Grids */
 .media-grid {
   background-image: none;
@@ -990,6 +1011,7 @@ ul.category-grid li[class*="Copernicus"] a:before {
 .media-item {
   width: 184px;
   background-color: #fff;
+  margin-top: 20px;
 }
 .media-view {
   -webkit-border-radius: 10px;
