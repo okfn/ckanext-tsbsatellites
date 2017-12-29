@@ -217,7 +217,7 @@ body>footer {
     flex-grow: 2;
     order: 2;
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: flex-start;
     flex-direction: column;
     flex-wrap: wrap;
     display: flex;
@@ -1035,4 +1035,12 @@ ul.category-grid {
 
 .hasDatepicker {
   min-width: 96%;
+}
+
+#followee-filter{
+  .btn{
+    .caret{
+      border-top-color: @box-bg;
+    }
+  }
 }
