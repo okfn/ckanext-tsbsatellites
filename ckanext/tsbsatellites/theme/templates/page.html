@@ -14,7 +14,7 @@
           {{ super() }}
           {% endblock %}
 
-          <div class="row-fluid {% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' %} no-nav{% endif %}">
+          <div class="wrapper row-fluid {% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' %} no-nav{% endif %}">
             {% block pre_primary %}
             {% endblock %}
 
