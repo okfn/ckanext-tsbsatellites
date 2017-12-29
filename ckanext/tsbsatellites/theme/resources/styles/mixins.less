@@ -30,6 +30,15 @@
   }
 }
 
+.arrow-right(@size, @arrow-color) {
+  width: 0;
+  height: 0;
+  border-top: (@size - 3px) solid transparent;
+  border-bottom: (@size - 3px) solid transparent;
+
+  border-left: @size/2 solid @arrow-color;
+}
+
 
 /* Bootstrap Mixins */
 
