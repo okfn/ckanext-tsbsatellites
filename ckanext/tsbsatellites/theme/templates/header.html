@@ -24,7 +24,7 @@
             {% if c.userobj.sysadmin %}
               <li>
                 <a href="{{ h.url_for(controller='admin', action='index') }}" title="{{ _('Sysadmin settings') }}">
-                  <i class="icon-legal"></i> <span>{{ _('Admin') }}</span>
+                  <i class="fa fa-briefcase"></i> <span>{{ _('Admin') }}</span>
                 </a>
               </li>
             {% endif %}
@@ -38,21 +38,21 @@
             <li class="notifications {% if new_activities > 0 %}notifications-important{% endif %}">
               {% set notifications_tooltip = ngettext('Dashboard (%(num)d new item)', 'Dashboard (%(num)d new items)', new_activities) %}
               <a href="{{ h.url_for(controller='user', action='dashboard') }}" title="{{ notifications_tooltip }}">
-                <i class="icon-dashboard"></i> <span>{{ _('Dashboard') }}</span>
+                <i class="fa fa-dashboard"></i> <span>{{ _('Dashboard') }}</span>
                 <span class="badge">{{ new_activities }}</span>
               </a>
             </li>
             {% block header_account_settings_link %}
               <li>
                 <a href="{{ h.url_for(controller='user', action='edit', id=c.userobj.name) }}" title="{{ _('Edit settings') }}">
-                  <i class="icon-cog"></i> <span>{{ _('Settings') }}</span>
+                  <i class="fa fa-cog"></i> <span>{{ _('Settings') }}</span>
                 </a>
               </li>
             {% endblock %}
             {% block header_account_log_out_link %}
               <li>
                 <a href="{{ h.url_for('/user/_logout') }}" title="{{ _('Log out') }}">
-                  <i class="icon-signout"></i> <span>{{ _('Logout') }}</span>
+                  <i class="fa fa-sign-out"></i> <span>{{ _('Logout') }}</span>
                 </a>
               </li>
             {% endblock %}
