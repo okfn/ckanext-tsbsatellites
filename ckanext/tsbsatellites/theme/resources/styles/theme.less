@@ -364,14 +364,12 @@ body>footer {
   }
 }
 
-// .wrapper {
-//   border: none;
-//   .border-radius(0);
-//   .box-shadow(none);
-//   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2Pcu3fvfwAHrgM49yDwxgAAAABJRU5ErkJggg==);
-//   background-repeat: repeat-y;
-//   background-position: 244px top;
-// }
+.wrapper {
+  border: none;
+  .border-radius(0);
+  .box-shadow(none);
+  background: none;
+}
 
 .primary {
   background-color: white;
@@ -970,6 +968,19 @@ ul.category-grid {
 
 .module-shallow .module-content {
   padding-top: 5px;
+}
+
+.dataset-map-expanded{
+  #dataset-map{
+    z-index: 999;
+    width: 100%;
+    height: 55%;
+    top: -@grid-gutter-width*20;
+    background: @main-bg;
+    margin: @grid-gutter-width/2 -@grid-gutter-width 0;
+    padding: @grid-gutter-width;
+    border: none;
+  }
 }
 
 #dataset-map {
