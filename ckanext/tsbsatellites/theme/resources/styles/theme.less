@@ -3,7 +3,7 @@
 @import 'variables.less';
 @import 'lesshat.less';
 @import 'mixins.less';
-@import 'fonts.less';
+// @import 'fonts.less';
 @import 'icons.less';
 
 /* Headings */
@@ -90,6 +90,13 @@ select {
 .btn,
 label {
   font-weight: normal;
+}
+
+.nav-tabs a,
+.btn{
+  .fa{
+    margin-right: @fa-right-margin;
+  }
 }
 
 a {
@@ -494,7 +501,7 @@ body {
     .module-title {
       padding: @grid-gutter-width;
       margin-top: 0;
-      margin-bottom: @grid-gutter-width*2;
+      margin-bottom: @grid-gutter-width;
       color: white;
       border-radius: @grid-gutter-width/2;
       background-color: @accent;
@@ -578,7 +585,11 @@ body {
 }
 
 ul.category-grid {
-  margin: 0;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   li {
     display: inline-block;
     vertical-align: top;
