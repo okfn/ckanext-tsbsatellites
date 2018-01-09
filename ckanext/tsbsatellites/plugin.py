@@ -305,7 +305,7 @@ class TSBSatellitesPlugin(p.SingletonPlugin):
                           'member_delete',
                           'history'
                       ])))
-            m.connect('publisher_activity', '/publisher/activity/{id}/0',
+            m.connect('publisher_activity', '/publisher/activity/{id}/{offset}',
                       action='activity', ckan_icon='time')
             m.connect('publisher_read', '/publisher/{id}', action='read')
             m.connect('publisher_about', '/publisher/about/{id}',
