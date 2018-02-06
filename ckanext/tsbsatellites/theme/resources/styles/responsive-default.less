@@ -1,0 +1,40 @@
+/* Responsive design styling for @default width */
+
+@media (max-width: @default) {
+  .masthead {
+    .section-wrapper {
+      align-items: center;
+      flex-direction: column;
+    }
+    .navigation {
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .header-image {
+    margin-top: @grid-gutter-width/2;
+    margin-bottom: @grid-gutter-width;
+  }
+  .homepage {
+    .hero {
+      .row-fluid {
+        >div {
+          margin-left: inherit;
+          width: auto;
+        }
+      }
+    }
+    [role=main] {
+      .row-fluid {
+        justify-content: center;
+        >div {
+          &,
+          &.offset1 {
+            margin-left: 0;
+          }
+          width: auto;
+        }
+      }
+    }
+  }
+}

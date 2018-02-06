@@ -1,6 +1,6 @@
 ---
-- hosts: dbserver
-
+- hosts: webserver
+  sudo: yes
   vars:
     ckan_user: ckan_default
     ckan_db: ckan_default

@@ -1,4 +1,5 @@
-- hosts: dbserver
+- hosts: webserver
+  sudo: yes
   tasks:
     - name: Make sure packages are installed
       apt: pkg={{ item }} state=present update_cache=yes
@@ -7,7 +8,7 @@
         - git
 
     - name: Download Solr 4
-      get_url: dest=/tmp/solr-4.7.0.tgz url=http://mirrors.linsrv.net/apache/lucene/solr/4.7.0/solr-4.7.0.tgz
+      get_url: dest=/tmp/solr-4.7.0.tgz url=https://archive.apache.org/dist/lucene/solr/4.7.0/solr-4.7.0.tgz
 
     - name: Create Solr dir in /usr/share
       file: path=/usr/share/solr state=directory

@@ -1,9 +1,10 @@
 ---
 - hosts: webserver
+  sudo: yes
   vars:
     ckan_package_site: http://packaging.ckan.org
-    ckan_package: python-ckan_2.2_amd64.deb
-    ckan_sha: d6767a4655d6ebf44981176eb9ae98a44cf90797836c7edf4e540554c8a33a59
+    ckan_package: python-ckan_2.2-precise_amd64.deb
+    ckan_sha: fb079b0811483ad2bf1ccec3c17b3af87f404dd13f2f65acdb689192fb45ee69 
     server_name: default.ckanhosted.com
     server_alias: www.default.ckanhosted.com
   tasks:
@@ -23,15 +24,15 @@
     command: dpkg --skip-same-version -i /tmp/{{ ckan_package }}
     changed_when: "ckan_install.stdout.startswith('Selecting')"
 
-  - name: Setup Apache
-    template: src=etc/apache2/ckan_default.j2 dest=/etc/apache2/sites-available/ckan_default owner=www-data group=www-data mode=0544
+#  - name: Setup Apache
+#    template: src=etc/apache2/ckan_default.j2 dest=/etc/apache2/sites-available/ckan_default owner=www-data group=www-data mode=0544
 
-  - name: Enable Apache virtualhost
-    file: src=/etc/apache2/sites-available/ckan_default dest=/etc/apache2/sites-enabled/ckan_default owner=www-data group=www-data state=link
+#  - name: Enable Apache virtualhost
+#    file: src=/etc/apache2/sites-available/ckan_default dest=/etc/apache2/sites-enabled/ckan_default owner=www-data group=www-data state=link
 
   #TODO: Template-ize ckan config file
-  #- name: setup ckan config file
-    #template: src=etc/ckan/production.ini dest=/etc/ckan/default/production.ini owner=root group=root mode=0544
+  - name: setup ckan config file
+    template: src=etc/ckan/production.ini dest=/etc/ckan/default/production.ini owner=root group=root mode=0544
 
   - name: Restart Apache
     service: name=apache2 state=reloaded
